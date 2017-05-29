@@ -3,9 +3,9 @@
 @section('titulo','principal')
 
 @section('cabeza')
-	@extends('plantillas.cabeza')
+	@include('plantillas.cabeza')
 @endsection
 
-@section('cuerpo')
-	el cuerpo
+@section('cuerpo')	
+	@include('plantillas.cuerpo')
 @endsection

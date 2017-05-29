@@ -9,6 +9,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		{!! Html::script('../js/bootstrap.min.js')!!}
 		{!! Html::style('../css/principal/cabeza.css')!!}
+		{!! Html::style('../css/principal/cuerpo.css')!!}
 		{!! Html::style('../css/principal/principal.css')!!}
 	<title>App | @yield('titulo')</title>
 </head>
