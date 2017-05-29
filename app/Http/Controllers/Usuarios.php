@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class Usuarios extends Controller
 {
+  
+     private  $user;
+     public function __construct()
+    {
+            $this->user=new User();     
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,8 @@ class Usuarios extends Controller
      */
     public function index()
     {
-        return "juan camilo";
+ 
+        return view("welcome");
     }
 
     /**
@@ -33,8 +41,8 @@ class Usuarios extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {       
+        return $this->user->allUser();
     }
 
     /**
