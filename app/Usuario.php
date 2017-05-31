@@ -2,13 +2,13 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Model
+use App\Http\Requests\UsuarioRequest;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Usuario extends Authenticatable
 {
-	 protected $table="usuarios";
-     use Notifiable;
-
+   use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -24,9 +24,15 @@ class Usuario extends Model
      * @var array
      */
     protected $hidden = [
-        'contrasena', 'remember_token',
+        'contrsena', 'remember_token',
     ];
-    public function todos(){
-       return $this->get(); 
+    public function crear(UsuarioRequest $request){
+
+            $this->create([
+            'pseudonimo'=>$request['pseudonimo'],
+            'correo'=>$request['correo'],
+            'contrasena'=> bcrypt($request['contrasena']),
+            'tipo_usuario'=>$request['usuario']=='1'?'A':'T',
+            ]);
     }
 }

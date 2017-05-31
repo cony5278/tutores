@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Http\Requests\UsuarioRequest;
+use App\Usuario;
 
 class Usuarios extends Controller
 {
   
-     private  $user;
+     private  $suario;
      public function __construct()
     {
-            $this->user=new User();     
+            $this->usuario=new Usuario();     
     }
     /**
      * Display a listing of the resource.
@@ -40,9 +41,9 @@ class Usuarios extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {       
-        return $this->user->allUser();
+    public function store(UsuarioRequest $request)
+    {              
+            $this->usuario->crear($request);
     }
 
     /**

@@ -14,7 +14,5 @@
 Route::get('/', function () {
     return view('principal.index');
 });
-Route::get('usuarios', function () {
-    return view('usuario.crear');
-});
-Route::resource('user','Usuarios');
+Route::resource('usuario','Usuarios');
+
