@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UsuarioRequest;
-use App\Usuario;
+use App\User;
+use App\Controllers\Auth\Re
 
 class Usuarios extends Controller
 {
@@ -12,7 +13,8 @@ class Usuarios extends Controller
      private  $suario;
      public function __construct()
     {
-            $this->usuario=new Usuario();     
+            $this->middleware('auth');
+            $this->usuario=new User();     
     }
     /**
      * Display a listing of the resource.
@@ -89,5 +91,12 @@ class Usuarios extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function autenticacion(Request $request)
+    {
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            // Authentication passed...
+            return redirect()->intended('cuenta/usuario');
+        }
     }
 }

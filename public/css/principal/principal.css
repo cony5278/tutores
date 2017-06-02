@@ -1,3 +1,13 @@
 html,body {
     height:100%;
 }
+
+.login-form{
+  width:350px;
+  padding:40px 30px;
+  background:rgba(235,235,205,0.7);
+  border-radius:4px;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+  margin:50px auto;
+}

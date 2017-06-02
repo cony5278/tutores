@@ -13,20 +13,20 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pseudonimo',30);          
+            $table->string('name',30);          
             $table->string('nombre1',30)->nullable();
             $table->string('nombre2',30)->nullable();
             $table->string('apellido1',30)->nullable();
             $table->string('apellido02',30)->nullable();
-            $table->string('correo',50)->unique();
-            $table->string('contrasena',150);
+            $table->string('email',50)->unique();
+            $table->string('password',150);
             $table->char('tipo_usuario',1,['T'=>'tutor','A'=>'aprendiz'])->default('A');
             $table->string('telefono',50)->nullable();
             $table->char('tipo_telefono',1,['C'=>'celular','F'=>'fijo'])->nullable();
-            $table->integer('usuario_id')->unsigned()->nullable();
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -39,6 +39,6 @@ class CreateUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('users');
     }
 }

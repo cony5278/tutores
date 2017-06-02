@@ -14,9 +14,8 @@
 	<title>App | @yield('titulo')</title>
 </head>
 <body>
-	@section('cabeza')
-		cabeza
-	@show
+	@yield('cabeza')
+	
 	@section('cuerpo')
 		cuerpo
 	@show

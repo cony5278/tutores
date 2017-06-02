@@ -6,18 +6,18 @@
 	</div>
 	@endforeach
 @endif
-{!! Form::open(['route'=>'usuario.store','metthod'=>'POST']) !!}
+{!! Form::open(['route'=>'register','metthod'=>'POST']) !!}
 	<div class="form-group">
 	 	{!!Form::label('pseudonimo', 'Nombre de usuario');!!}
-	    {!!Form::text('pseudonimo',null,array('class' => 'form-control','placeholder'=>'Nombre o Alias'));!!}		
+	    {!!Form::text('name',null,array('class' => 'form-control','placeholder'=>'Nombre o Alias'));!!}		
 	</div>
 	<div class="form-group">
 	 	{!!Form::label('correo', 'Correo');!!}
-	    {!!Form::text('correo',null,array('class' => 'form-control','placeholder'=>'Tu direccion de correo electronico'));!!}				
+	    {!!Form::text('email',null,array('class' => 'form-control','placeholder'=>'Tu direccion de correo electronico'));!!}				
 	</div>
 	<div class="form-group">
 	 	{!!Form::label('contrasena', 'Contraseña');!!}
-	 	{{ Form::password('contrasena', array('class' => 'form-control','placeholder'=>'Contraseña')) }}  
+	 	{{ Form::password('password', array('class' => 'form-control','placeholder'=>'Contraseña')) }}  
 	</div>
 	<div class="btn-group" data-toggle="buttons" style="margin-bottom: 5px">	
 	  <label class="btn btn-primary">
