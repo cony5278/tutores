@@ -1,0 +1,125 @@
+.contenedor-izquierda{
+	height:  100%;
+	width: 20%;
+	border-right: 0.2px #DAD4D4 solid;
+	float: left !important;
+}
+.contenedor-cabeza{
+	height:  10%;
+
+}
+.contenedor-cuerpo{
+	margin-top: 1%;
+	margin-left: 21%;
+	height: 87.5%;
+	background: #297;
+}
+.img-perfil{
+	float: left;
+}
+/**
+	inicio del estilo  uscar
+*/
+.group 			  { 
+  margin-top: 30px;
+  position:relative; 
+  margin-bottom:45px; 
+}
+.buscar {
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:90%;
+  border:none;
+  border-bottom:1px solid #DAD4D4;
+}
+ .buscar:focus 		{ outline:none; }
+
+label 				 {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+ .buscar:focus ~ label,  .buscar:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#2e6da4;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:90%; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#2e6da4; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+ .buscar:focus ~ .bar:before,  .buscar:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100%; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+ .buscar:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+/**
+fin del estilo del input   uscar
+*/
+a:hover {
+    background-color: yellow;
+    border-radius: 200px 200px 200px 200px;
+	-moz-border-radius: 200px 200px 200px 200px;
+	-webkit-border-radius: 200px 200px 200px 200px;
+	border: 0px solid #000000;
+	 opacity: 0.1;
+    filter: alpha(opacity=10); /* For IE8 and earlier */
+}

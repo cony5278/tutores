@@ -10,12 +10,14 @@
 		{!! Html::script('../js/bootstrap.min.js')!!}
 		{!! Html::style('../css/principal/cabeza.css')!!}
 		{!! Html::style('../css/principal/cuerpo.css')!!}
-		{!! Html::style('../css/principal/principal.css')!!}
+		{!! Html::style('../css/principal/principal.css')!!}	
+
+		@yield('css')
 	<title>App | @yield('titulo')</title>
 </head>
 <body>
 	@yield('cabeza')
-	
+
 	@section('cuerpo')
 		cuerpo
 	@show
