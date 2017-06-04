@@ -7,6 +7,10 @@
 	</div>
 	@endforeach
 @endif
+<a href="/">
+ 	{{ HTML::image('../img/logo.jpg', "Imagen", array('class'=>'img-perfil img-circle  img-responsive center-block','id'=>'img-cuenta-config')) }}
+</a> 	
+</br>
 {!! Form::open(['route'=>'login','metthod'=>'POST']) !!}
 	<div class="form-group">
 	 	{!!Form::label('pseudonimo', 'Nombre de usuario o dirección de correo electrónico');!!}

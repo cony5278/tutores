@@ -10,9 +10,10 @@
 		{!! Html::script('../js/bootstrap.min.js')!!}
 		{!! Html::style('../css/principal/cabeza.css')!!}
 		{!! Html::style('../css/principal/cuerpo.css')!!}
-		{!! Html::style('../css/principal/principal.css')!!}	
+		{!! Html::style('../css/principal/principal.css')!!}
 
 		@yield('css')
+		@yield('js')
 	<title>App | @yield('titulo')</title>
 </head>
 <body>
@@ -21,5 +22,6 @@
 	@section('cuerpo')
 		cuerpo
 	@show
+	@yield('cuerpojs')
 </body>
 </html>
