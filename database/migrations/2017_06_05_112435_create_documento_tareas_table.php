@@ -13,7 +13,7 @@ class CreateDocumentoTareasTable extends Migration
      */
     public function up()
     {
-        Schema::create('documento__tareas', function (Blueprint $table) {
+        Schema::create('documento_tareas', function (Blueprint $table) {
             $table->integer('tarea_id')->unsigned()->nullable();
             $table->foreign('tarea_id')->references('id')->on('tareas');
             $table->integer('documento_id')->unsigned()->nullable();
@@ -29,6 +29,6 @@ class CreateDocumentoTareasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documento__tareas');
+        Schema::dropIfExists('documento_tareas');
     }
 }
