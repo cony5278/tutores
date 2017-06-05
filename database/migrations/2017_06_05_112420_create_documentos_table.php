@@ -15,7 +15,7 @@ class CreateDocumentosTable extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('tipo_documento',['PDF','WORD','EXCEL','JPG','PNG','BMP''OTROS',]);
+            $table->enum('tipo_documento',['PDF','WORD','EXCEL','JPG','PNG','BMP','OTROS']);
             $table->timestamps();
         });
     }

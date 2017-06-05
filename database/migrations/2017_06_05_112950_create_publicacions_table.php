@@ -17,13 +17,13 @@ class CreatePublicacionsTable extends Migration
             $table->increments('id');
             $table->string('titulo',50);
             $table->string('descripcion',250);
-            $table->dobule('valor');
-            $table->date('fechass_inicial');
-            $table->date('fecha_final');
+            $table->double('valor',15,3);
+            $table->dateTime('fecha_inicial');
+            $table->dateTime('fecha_final');
             $table->enum('estado',['URGENTE','MUYURGENTE'])->deafault('');
-            $table->integer('area_id')->unsigned()->nullable();
+            $table->integer('area_id')->unsigned();
             $table->foreign('area_id')->references('id')->on('areas');
-            $table->integer('tarea_id')->unsigned()->nullable();
+            $table->integer('tarea_id')->unsigned();
             $table->foreign('tarea_id')->references('id')->on('tareas');
             $table->integer('usuario_aceptado_id')->unsigned()->nullable();
             $table->foreign('usuario_aceptado_id')->references('id')->on('users');

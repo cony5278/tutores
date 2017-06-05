@@ -18,7 +18,7 @@ class CreateNoticiaPublicadasTable extends Migration
             $table->foreign('publicacion_id')->references('id')->on('publicaciones');
             $table->integer('usuario_tutor_id')->unsigned()->nullable();
             $table->foreign('usuario_tutor_id')->references('id')->on('users');
-            $table->double('valor');            
+            $table->double('valor',15,3);            
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateTareasTable extends Migration
     {
         Schema::create('tareas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('nombre',25);
             $table->enum('estado_entrega',['ACEPTADO','RECHAZADO','ENTREGADO','NOENTREGADO']);
             $table->timestamps();
         });
