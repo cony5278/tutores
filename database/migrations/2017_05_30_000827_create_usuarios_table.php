@@ -22,9 +22,9 @@ class CreateUsuariosTable extends Migration
             $table->string('apellido02',30)->nullable();
             $table->string('email',50)->unique();
             $table->string('password',150);
-            $table->char('tipo_usuario',1,['T'=>'tutor','A'=>'aprendiz'])->default('A');
+            $table->enum('tipo_usuario',['T','A','S'])->default('A');
             $table->string('telefono',50)->nullable();
-            $table->char('tipo_telefono',1,['C'=>'celular','F'=>'fijo'])->nullable();
+            $table->enum('tipo_telefono',['C','F'])->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->rememberToken();

@@ -13,11 +13,11 @@
 
 Route::get('/', function () {
     return view('principal.index');
-});
+})->name('/')->middleware('guest');
 Route::resource('/usuario/sesion','Usuarios');
 Route::get('/usuario/sesion', function () {
     return view('usuarios.vistasesion');
-});
+})->name('/usuario/sesion')->middleware('guest');
 
 Route::get('/cuenta/usuario', function () {
     return view('usuarios.vistacuenta');
