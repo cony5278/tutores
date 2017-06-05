@@ -7,13 +7,13 @@
   <div class="contenedor-izquierda  col-xs-2 col-sm-2 col-md-2">
       @include('usuarios/menu')
   </div>
-  
+
   <div class="configuracion-usuario ">
     		<div class="configuracion-usuario-izquierda col-xs-10 col-sm-10 col-md-6">
     			izquierda
     		</div>
     		<div class="configuracion-usuario-derecha col-xs-12 col-sm-12 col-md-4">
-    			derecha
+    			     @include('usuarios/publicaciones/fpublicacion')
     		</div>
   </div>
   <!-- este es el contenedor donde va a ir las publicaciones que el usuario a publicado y tambien algo en la cabeza -->

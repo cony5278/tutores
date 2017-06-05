@@ -1,37 +1,46 @@
 
 @if(count($errors)>0)
-	@foreach($errors->all() as $error)
+	@foreach($errors->all() as $error)Route::resource middelware laravel
 	<div class="alert alert-danger">
 	  <strong>{{$error}}</strong> 
 	</div>
 	@endforeach
 @endif
-{!! Form::open(['route'=>'publicacion.crear','metthod'=>'POST']) !!}
+{!! Form::open(['route'=>'publicacion.store','metthod'=>'POST']) !!}
 	<div class="form-group">
-	 	{!!Form::label('pseudonimo', 'Nombre de usuario');!!}
-	    {!!Form::text('name',null,array('class' => 'form-control','placeholder'=>'Nombre o Alias'));!!}		
+	 	{!!Form::label('titulo', 'Titulo');!!}
+	    {!!Form::text('titulo',null,array('class' => 'form-control'));!!}		
 	</div>
 	<div class="form-group">
-	 	{!!Form::label('correo', 'Correo');!!}
-	    {!!Form::text('email',null,array('class' => 'form-control','placeholder'=>'Tu direccion de correo electronico'));!!}				
-	</div>
+	 	{!!Form::label('descripcion', 'Descripcion');!!}
+	    {!!Form::text('descripcion',null,array('class' => 'form-control'));!!}			
+	</div>	
 	<div class="form-group">
-	 	{!!Form::label('contrasena', 'Contraseña');!!}
-	 	{{ Form::password('password', array('class' => 'form-control','placeholder'=>'Contraseña')) }}  
-	</div>
+	 	{!!Form::label('descripcion', 'Descripcion');!!}	 	
+	  	{!!Form::date('name', \Carbon\Carbon::now());!!}		
+	</div>		
+	<div class="form-group">
+	 	{!!Form::label('descripcion', 'Descripcion');!!}
+		{!!Form::file('image');!!}		
+	</div>	
+	{!!Form::label('importancia', 'Importancia de la publicacion');!!}
 	<div class="btn-group" data-toggle="buttons" style="margin-bottom: 5px">	
+	
 	  <label class="btn btn-primary">
-	  	{!!Form::radio('usuario','1',array('checked'));!!}
-	  	Aprendiz	    
+	  	{!!Form::radio('estado','0',array('checked'));!!}
+	  	Urgente    
 	  </label>	  
-	    <label class="btn btn-primary">
-	  	{!!Form::radio('usuario','0',array(''));!!}
-	  	Tutor	    
+	   <label class="btn btn-primary">
+	  	{!!Form::radio('estado','1',array(''));!!}
+	  	Muy	    
+	  </label>	
+	   <label class="btn btn-primary">
+	  	{!!Form::radio('estado','2',array(''));!!}
+	  	Parcial	    
 	  </label>	
 	 </div>
-
 	<div class="form-group"> 
-	{!!Form::submit('Inscríbete en ######',array('class' => 'btn btn-primary btn-lg btn-block'));!!} 
+	{!!Form::submit('Publicar',array('class' => 'btn btn-primary btn-lg btn-block'));!!} 
 	</div>
 {!! Form::close() !!}
 
