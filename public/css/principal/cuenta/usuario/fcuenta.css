@@ -1,8 +1,12 @@
-.contenedor-cuenta{
-    height:  100%;  
+body{
+    background-color: #1f1f1f;
+}
+.contenedor-cuenta{ 
+  height: 100%;
 }
 .contenedor-izquierda{
 	height:  100%;
+
 	border-right: 0.2px #DAD4D4 solid;
 
 }
@@ -21,22 +25,6 @@
 	float: left;
 	width: 50px;
 	height: 50px; 	
-}
-.img-config{
-	float: left;
-	width: 50px;
-	height: 50px;
- 	opacity: 1;
-    filter: alpha(opacity=100); /* For IE8 and earlier */
-}
-.img-config:hover {
-    background-color: #000;
-    border-radius: 50px 50px 50px 50px;
-	-moz-border-radius: 50px 50px 50px 50px;
-	-webkit-border-radius: 50px 50px 50px 50px;
-	border: 0px solid #000000;
- 	opacity: 0.80;
-    filter: alpha(opacity=800); /* For IE8 and earlier */
 }
 .configuracion-usuario{
 	display: none;
@@ -60,6 +48,7 @@
   margin-bottom:5px; 
 }
 .buscar {
+    background-color: #1f1f1f;
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
@@ -164,4 +153,51 @@ fin del estilo del input   uscar
   width: 120px;
   height: 120px;   
 }
+/**
+  menu lateral
+*/
+/* Icons */
+.menu-icon {
+    font-size: 20px;
+}
+/* Hamburger */
+.navbar-toggle {
+    background-color: transparent;
+    border: 1px solid rgba(126, 169, 39, 0.4);
+}
+.navbar-toggle .icon-bar,
+.navbar-toggle .icon-bar + .icon-bar {
+    background-color: #7ea927;
+}
+@media only screen and (max-width: 500px) {
+  .contenedor-izquierda{
+    width: 100%;
+    height: auto;
+  }
+  .contenedor-cuenta{
+    height: auto;
+  }
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
 
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+        text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+/* .....NavBar: Fully showing nav bar..... */
