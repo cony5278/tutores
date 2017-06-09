@@ -7,7 +7,8 @@
 	</div>
 	@endforeach
 @endif
-{!! Form::open(['route'=>'publicacion.store','metthod'=>'POST']) !!}
+{!! Form::open(['route' => 'areas.store', 'id' => 'formularioPublicacion','metthod'=>'POST']) !!}
+ 
 	<div class="form-group">
 	 	{!!Form::label('titulo', 'Titulo');!!}
 	    {!!Form::text('titulo',null,array('class' => 'form-control'));!!}		
@@ -51,12 +52,11 @@
 								<div class="col-xs-6 col-sm-6 col-md-6">
 								<button type="button"  class="atras-tarea btn btn-primary btn-lg btn-block" onclick="formulario.atras('atras-tarea','publicacion-tareas','publicacion-publicaciones')">Atras</button>
 								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
-							{!!Form::submit('Publicar',array('class' => 'siguiente-envio btn btn-primary btn-lg btn-block'));!!} 
-							    </div>
+								<button type="button"  class="siguiente-publicaciones btn btn-primary btn-lg btn-block" onclick="formulario.enviar()">Siguiente</button>
+							
 	</div>
 								
-		
+	
 					
 {!! Form::close() !!}
 </div>

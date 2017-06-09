@@ -18,7 +18,7 @@ $(document).ready(function(){
 	/**
 	*PASO A PASO PARA HACER UNA PUBLICACION
 	*/
-		 formulario=new EnvioDatos(null,null);
+		 formulario=new EnvioDatos("formularioPublicacion","areas","POST");
 	/**
 	*FIN
 	*/

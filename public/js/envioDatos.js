@@ -1,22 +1,33 @@
-function EnvioDatos(idFomulario,ruta) {
-	this.idFomulario=idFomulario;
-	this.ruta =ruta;
-	this.datosTodos=null;//contiene los datos concatenados de todos los formularios
-	this.datosActual=null;//contiene los datos actuales de formulario
-	var map = new Map;//mapas
+
+/**
+*formularioPublicacion=>id del formulario el cual va enviar la informacion al controlador
+*ruta=>ruta del controlador,
+*metodo=>metodo POST,PUT,GET
+*/
+function EnvioDatos(formularioPublicacion,ruta,metodo) {
+	this.formularioPublicacion=formularioPublicacion;//variable que almacena el id del ultimo formulario que va enviar los datos
+	this.ruta =ruta;//variable que almacena la ruta donde se van a enviar los datos
+	this.map= new Array();//variable que guarda los datos serialize de los formularios	
+	this.metodo=metodo;//metodo de envio POST,PUT ,GET
 	this.guardarDatosFormulario=function(idFomulario){
-			$("#"+idFomulario).on("click", function(e){	
-			//colocar las validaciones								
-					if(EnvioDatos.datosTodos!=null){
-						EnvioDatos.datosTodos=EnvioDatos.datosTodos+$(this).serialize();
-			 		}else{EnvioDatos.datosTodos=$(this).serialize();
-			 			EnvioDatos.datosActual=EnvioDatos.datosTodos;			 			
-			 		}
-			 		console.log("TODOS: "+EnvioDatos.datosTodos+" ACTUAL: "+EnvioDatos.datosActual);			 			
-			 })
+			var objeto=this;
+			$("#"+idFomulario).on("click", function(e){				
+				objeto.map[idFomulario]=$(this).serialize()		
+			})			
 	}
+	/**
+	*metodo que concatena los serialize de todos los formularios por los que se han pasado
+	*/
+	this.enviar=function(){		
+		var datos=this.map['formularioArea']+
+				  this.map['formularioTarea']+
+				  this.map['formularioPublicacion'];
+		this.envioAjax(datos);
+	}
+	/**
+	*metodo que oculta el formulario vuelve oculto en formulario actual y visible el anterior
+	*/
 	this.atras=function(btn,visible,ocultar){
-		EnvioDatos.datosTodos=null;
 		var atras=new DomDivVisible(btn,
 									 null,
 									 visible,								
@@ -24,6 +35,9 @@ function EnvioDatos(idFomulario,ruta) {
 									 false);
 		atras.accion();	
 	}
+	/**
+	*metodo que oculta el formulario anterior y vuelve visible el siguiente
+	*/
 	this.siguiente=function(btn,visible,ocultar,idFormulario){
 		this.guardarDatosFormulario(idFormulario);	
 		var siguienteTarea=new DomDivVisible(btn,
@@ -32,31 +46,30 @@ function EnvioDatos(idFomulario,ruta) {
 									 ocultar,								
 									 false);
 		siguienteTarea.accion();		
-		return false;
 	}
-
-	this.mostrar=function(){
-		var rutas=this.ruta;
-		$("#"+this.idFormulario).on("submit", function(e)
-    {
-        e.preventDefault();
-        e.stopPropagation();      
-        $.ajax({
-            url:rutas,
-            method: $(this).attr("method"),
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: function(res)
-            {
-                
-            },
-            error: function(jqXHR, textStatus, errorThrown)
-            {
-              
-            }
-        })
-    })
-	
+	/**
+	*envio atravez de ajax de los datos almacenados al controlador
+	*/
+	this.envioAjax=function(dato){ 
+		//antes de enviar los datos se capturan los datos del ultimo formulario para este caso en esl formulario de publiciones
+		this.guardarDatosFormulario(this.formularioPublicacion);
+		//fin
+		//envion de datos por ajax	
+	        $.ajax({
+	            url:"areas",
+	            method: this.metodo,
+	            data: dato,
+	            dataType: 'json',
+	            success: function(res)
+	            {
+	                
+	            },
+	            error: function(jqXHR, textStatus, errorThrown)
+	            {
+	              
+	            }
+	       });	
+  
 	}
 }
 
