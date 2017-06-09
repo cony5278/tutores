@@ -23,9 +23,17 @@ Route::get('/usuario/sesion', function () {
 })->name('/usuario/sesion')->middleware('guest');
 
 Route::get('/cuenta/usuario', function () {
-    return view('usuarios.vistacuenta');
+
+    return view('usuarios.vistacuenta')->with('areas',DB::table('areas')->get());
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('area', function () {
+
+    return view('prueba')->with('areas',DB::table('areas')->get());
+});
+
+Route::resource('cuenta/areas','AreaController');

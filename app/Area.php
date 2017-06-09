@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Area extends Model
 {
-    //
+	protected $table="areas";
+       use Notifiable;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'id', 'nombre',
+    ];
 }

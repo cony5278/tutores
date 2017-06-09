@@ -13,7 +13,9 @@
     			izquierda
     		</div>
     		<div class="configuracion-usuario-derecha col-xs-12 col-sm-12 col-md-4">
-    			     @include('usuarios/publicaciones/fpublicacion')
+    			     @include('usuarios/publicaciones/farea')
+               @include('usuarios/publicaciones/ftarea')
+               @include('usuarios/publicaciones/fpublicacion')
     		</div>
   </div>
   <!-- este es el contenedor donde va a ir las publicaciones que el usuario a publicado y tambien algo en la cabeza -->

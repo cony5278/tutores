@@ -1,4 +1,5 @@
 
+<div class="publicacion-publicaciones" style="display: none;">
 @if(count($errors)>0)
 	@foreach($errors->all() as $error)Route::resource middelware laravel
 	<div class="alert alert-danger">
@@ -26,7 +27,7 @@
 	{!!Form::label('importancia', 'Importancia de la publicacion');!!}
 	<div class="btn-group" data-toggle="buttons" style="margin-bottom: 5px">	
 	
-	  <label class="btn btn-primary">
+	  <label class="btn btn-primary active">
 	  	{!!Form::radio('estado','0',array('checked'));!!}
 	  	Urgente    
 	  </label>	  
@@ -38,9 +39,25 @@
 	  	{!!Form::radio('estado','2',array(''));!!}
 	  	Parcial	    
 	  </label>	
+
 	 </div>
+	 <select name="area">
+	  @foreach ($areas as $area)
+	  	    <option value="{{$area->id}}">{{ $area->nombre }}</option>      
+ 	  @endforeach	 
+	  </select>
 	<div class="form-group"> 
-	{!!Form::submit('Publicar',array('class' => 'btn btn-primary btn-lg btn-block'));!!} 
+	
+								<div class="col-xs-6 col-sm-6 col-md-6">
+								<button type="button"  class="atras-tarea btn btn-primary btn-lg btn-block" onclick="formulario.atras('atras-tarea','publicacion-tareas','publicacion-publicaciones')">Atras</button>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+							{!!Form::submit('Publicar',array('class' => 'siguiente-envio btn btn-primary btn-lg btn-block'));!!} 
+							    </div>
 	</div>
+								
+		
+					
 {!! Form::close() !!}
+</div>
 

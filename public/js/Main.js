@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	//hace visible o invisible los objetos div de la pagina haciendo visible un objeto y ocultando otro
 		var domDivVisible=new DomDivVisible("img-config",
-											"",
+											null,
 											"configuracion-usuario",
 											"contenedor-usuario-publicacion",
 											true);	
@@ -11,8 +11,15 @@ $(document).ready(function(){
 		var domDivVisiblePerfil=new DomDivVisible("img-perfil",
 												  "perfil-atras",
 												  "contenedor-perfil",
-												  "",
+												  null,
 												  false);	
 		domDivVisiblePerfil.onClick();	
 	//fin
+	/**
+	*PASO A PASO PARA HACER UNA PUBLICACION
+	*/
+		 formulario=new EnvioDatos(null,null);
+	/**
+	*FIN
+	*/
 });
