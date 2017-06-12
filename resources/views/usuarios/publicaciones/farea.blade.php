@@ -7,22 +7,17 @@
 	</div>
 	@endforeach
 @endif
-	{!! Form::open(['route' => 'areas.store', 'id' => 'formularioArea','metthod'=>'POST']) !!}
- 
-							<div class="form-group">
-								{!! Form::text('title', null, ["class" => "form-control"]) !!}
-							</div>
- 
-							<div class="form-group">
-								{!! Form::textarea('body', null,
-										['class'=>'form-control', 'placeholder'=>'Body'])
-								!!}
-							</div>
- 
-							<div class="form-group">
-								<button type="button"  class="siguiente-tarea btn btn-primary btn-lg btn-block" onclick="formulario.siguiente('siguiente-tarea','publicacion-tareas','publicacion-areas','formularioArea');">Siguiente</button>
-							</div>
-						
- 
-{!! Form::close() !!}
+
+	<div class="form-group">
+		<select name="area">
+		 {!!Form::label('areas', 'Seleccionar Area');!!}
+		  @foreach ($areas as $area)
+		    <option value="{{$area->id}}">{{ $area->nombre }}</option>  
+		  @endforeach	 
+		</select>
+
+	</div>						 
+	<div class="form-group">
+		<button type="button"  class="siguiente-tarea btn btn-primary btn-lg btn-block" onclick="formulario.siguiente('siguiente-tarea','publicacion-tareas','publicacion-areas','formularioArea');">Siguiente</button>
+	</div>
 </div>

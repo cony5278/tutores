@@ -13,10 +13,22 @@
     			izquierda
     		</div>
     		<div class="configuracion-usuario-derecha col-xs-12 col-sm-12 col-md-4">
-    			     @include('usuarios/publicaciones/farea')
-               @include('usuarios/publicaciones/ftarea')
-               @include('usuarios/publicaciones/fpublicacion')
-    		</div>
+          {!! Form::open(['route' => 'publicaciones.store', 'id' => 'formularioPublicacion','metthod'=>'POST','files'=> true]) !!}
+           
+            <div>
+                <a class="configuracion-derecha-uno">1</a>
+              	 @include('usuarios/publicaciones/farea')
+            </div>
+            <div>
+              <a class="configuracion-derecha-dos">2</a>
+                 @include('usuarios/publicaciones/ftarea')
+            </div>
+            <div>
+               <a class="configuracion-derecha-tres">3</a>
+                 @include('usuarios/publicaciones/fpublicacion')
+      		 </div>
+         {!! Form::close() !!}
+        </div>
   </div>
   <!-- este es el contenedor donde va a ir las publicaciones que el usuario a publicado y tambien algo en la cabeza -->
   <div class="contenedor-usuario-publicacion ">

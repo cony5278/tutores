@@ -7,7 +7,7 @@
 	</div>
 	@endforeach
 @endif
-{!! Form::open(['route' => 'areas.store', 'id' => 'formularioPublicacion','metthod'=>'POST']) !!}
+
  
 	<div class="form-group">
 	 	{!!Form::label('titulo', 'Titulo');!!}
@@ -18,13 +18,15 @@
 	    {!!Form::text('descripcion',null,array('class' => 'form-control'));!!}			
 	</div>	
 	<div class="form-group">
-	 	{!!Form::label('descripcion', 'Descripcion');!!}	 	
-	  	{!!Form::date('name', \Carbon\Carbon::now());!!}		
-	</div>		
-	<div class="form-group">
-	 	{!!Form::label('descripcion', 'Descripcion');!!}
-		{!!Form::file('image');!!}		
+	 	{!!Form::label('fecha_entrega', 'Fecha entrega');!!}	 	
+	  	{!!Form::date('fecha_final', \Carbon\Carbon::now());!!}		
 	</div>	
+	<div class="form-group">
+	 	{!!Form::label('valor', 'Valor');!!}	 	
+		{!!Form::text('valor',null,array('class' => 'form-control'));!!}	
+	</div>
+		
+
 	{!!Form::label('importancia', 'Importancia de la publicacion');!!}
 	<div class="btn-group" data-toggle="buttons" style="margin-bottom: 5px">	
 	
@@ -42,22 +44,17 @@
 	  </label>	
 
 	 </div>
-	 <select name="area">
-	  @foreach ($areas as $area)
-	  	    <option value="{{$area->id}}">{{ $area->nombre }}</option>      
- 	  @endforeach	 
-	  </select>
-	<div class="form-group"> 
-	
-								<div class="col-xs-6 col-sm-6 col-md-6">
-								<button type="button"  class="atras-tarea btn btn-primary btn-lg btn-block" onclick="formulario.atras('atras-tarea','publicacion-tareas','publicacion-publicaciones')">Atras</button>
-								</div>
-								<button type="button"  class="siguiente-publicaciones btn btn-primary btn-lg btn-block" onclick="formulario.enviar()">Siguiente</button>
-							
-	</div>
-								
-	
-					
-{!! Form::close() !!}
+
+	<div class="form-group"> 		
+		<div class="col-xs-6 col-sm-6 col-md-6">
+			<button type="button"  class="atras-area btn btn-primary btn-lg btn-block" onclick="formulario.atras('atras-tarea','publicacion-tareas','publicacion-publicaciones')"">Atras</button>
+		</div>
+				
+		<div class="col-xs-6 col-sm-6 col-md-6">
+			<button type="button"  class="siguiente-publicaciones btn btn-primary btn-lg btn-block" onclick="formulario.enviar()">Siguiente</button>
+		</div>		
+	</div> 
+				
+
 </div>
 

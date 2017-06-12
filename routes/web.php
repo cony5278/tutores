@@ -36,4 +36,4 @@ Route::get('area', function () {
     return view('prueba')->with('areas',DB::table('areas')->get());
 });
 
-Route::resource('cuenta/areas','AreaController');
+Route::resource('cuenta/publicaciones','PublicacionControlador');

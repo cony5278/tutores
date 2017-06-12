@@ -8,7 +8,9 @@
 
 @section('js')
 		{!! Html::script('../js/DomDivVisible.js')!!}	
+		{!! Html::script('../js/Validacion.js')!!}	
 		{!! Html::script('../js/envioDatos.js')!!}	
+
 @endsection
 @section('cuerpojs')		
 		{!! Html::script('../js/Main.js')!!}

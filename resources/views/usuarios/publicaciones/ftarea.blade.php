@@ -7,24 +7,22 @@
 	</div>
 	@endforeach
 @endif
-	{!! Form::open(['route' => 'areas.store', 'id' => 'formularioTarea','metthod'=>'POST']) !!}
+	<div class="form-group">
+		{!!Form::label('titulo', 'Titulo');!!}
+		{!! Form::text('titulo_tarea', null, ["class" => "form-control"]) !!}
+	</div>
  
-							<div class="form-group">
-								{!! Form::text('title', null, ["class" => "form-control"]) !!}
-							</div>
- 
- 
-							<div class="form-group ">
-								<div class="col-xs-6 col-sm-6 col-md-6">
-								<button type="button"  class="atras-area btn btn-primary btn-lg btn-block" onclick="formulario.atras('atras-area','publicacion-areas','publicacion-tareas')">Atras</button>
-								</div>
+	<div class="form-group">
+	 	{!!Form::label('archivo', 'archivo');!!}
+		{!!Form::file('archivo',["class" => "archivos"]);!!}		
+	</div>	
+	<div class="form-group ">
+		<div class="col-xs-6 col-sm-6 col-md-6">
+			<button type="button"  class="atras-area btn btn-primary btn-lg btn-block" onclick="formulario.atras('atras-area','publicacion-areas','publicacion-tareas')">Atras</button>
+		</div>
 				
-								<div class="col-xs-6 col-sm-6 col-md-6">
-								<button type="button"  class="siguiente-publicaciones btn btn-primary btn-lg btn-block" onclick="formulario.siguiente('siguiente-publicaciones','publicacion-publicaciones','publicacion-tareas','formularioTarea')">Siguiente</button>
-							    </div>
-							</div>	
-
-
- 
-{!! Form::close() !!}
+		<div class="col-xs-6 col-sm-6 col-md-6">
+			<button type="button"  class="siguiente-publicaciones btn btn-primary btn-lg btn-block" onclick="formulario.siguiente('siguiente-publicaciones','publicacion-publicaciones','publicacion-tareas','formularioTarea')">Siguiente</button>
+		</div>
+	</div>	
 </div>

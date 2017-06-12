@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Http\Request;
 class Area extends Model
 {
 	protected $table="areas";
@@ -16,4 +16,7 @@ class Area extends Model
     protected $fillable = [
         'id', 'nombre',
     ];
+
+     
+     
 }

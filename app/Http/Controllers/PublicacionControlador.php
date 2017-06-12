@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Area;
+use App\Documento;
+use App\Tarea;
+use App\Publicacion;
 class PublicacionControlador extends Controller
 {
-   
-
+    private $publicacion;
+    private $tarea;    
+    private $documento;
      public function __construct()
-    {
-            $this->middleware('guest');           
+    {   
+
+        $this->publicacion=new Publicacion();
+        $this->tarea=new Tarea();   
+        $this->documento=new Documento();
+        //$this->middleware('guest');           
     }
     /**
 
@@ -41,7 +49,10 @@ class PublicacionControlador extends Controller
      */
     public function store(Request $request)
     {
-            
+        $tareas=$this->tarea->crear($request,$request['area']);  
+        $this->documento->crear($request,$tareas->id);
+        $this->publicacion->crear($request,$tareas->id);
+        return $request->all();       
     }
 
     /**

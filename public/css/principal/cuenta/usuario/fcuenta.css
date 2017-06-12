@@ -38,6 +38,7 @@ body{
 .configuracion-usuario-derecha{
 	background: #953;
 	height: 100%;
+  border-left: 1px solid #000;
 }
 /**
 	inicio del estilo  uscar
