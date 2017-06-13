@@ -51,7 +51,7 @@ class PublicacionControlador extends Controller
     {
         $tareas=$this->tarea->crear($request,$request['area']);  
         $this->documento->crear($request,$tareas->id);
-        $this->publicacion->crear($request,$tareas->id);
+        $this->publicacion->crear($request,$tareas->id);      
         return $request->all();       
     }
 

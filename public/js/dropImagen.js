@@ -1,0 +1,5 @@
+function DropImagen(){
+
+
+	this.cambiar
+}

@@ -7,13 +7,13 @@
 @endsection
 
 @section('js')
-		{!! Html::script('../js/DomDivVisible.js')!!}	
-		{!! Html::script('../js/Validacion.js')!!}	
+		{!! Html::script('../js/imagen.js')!!}	
+		{!! Html::script('../js/domDivVisible.js')!!}	
+		{!! Html::script('../js/validacion.js')!!}	
 		{!! Html::script('../js/envioDatos.js')!!}	
-
 @endsection
 @section('cuerpojs')		
-		{!! Html::script('../js/Main.js')!!}
+		{!! Html::script('../js/main.js')!!}
 @endsection
 @section('cuerpo')	
 	@include('usuarios.fcuenta')

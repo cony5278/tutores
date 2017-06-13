@@ -39,22 +39,26 @@ function EnvioDatos(formularioPublicacion,ruta,metodo) {
 									 false);
 		siguienteTarea.accion();		
 	}
-	this.addDatos=function(){
+	/**
+	*metodo que adiciona los datos del formulario
+	*/
+	this.addDatos=function(){		
 		var formData = new FormData();		
 
 		$.each($("#"+this.formularioPublicacion).serializeArray(), function(i, json) {			
 		   		formData.append(json.name, json.value);		
-		});
-				formData.append('archivo',$("#"+this.formularioPublicacion+" .archivos")[0].files[0]);
-	
+		});			     
+	     var archivos=$("#"+this.formularioPublicacion+" .archivos")[0].files;
+	     var size=archivos.length;
+	     for (var i = 0; i < size; i++) {
+	     		formData.append("archivos[]",archivos[i]);
+	     }	   
 		return formData;
 	}
 	/**
 	*envio atravez de ajax de los datos almacenados al controlador
 	*/
-	this.envioAjax=function(){ 
-			
-
+	this.envioAjax=function(){ 	
 	        $.ajax({
 	        	headers: {'X-CSRF-TOKEN':$("#"+this.formularioPublicacion+" input[name=_token]").val()},
 	            url:this.ruta,	        

@@ -14,7 +14,7 @@
  
 	<div class="form-group">
 	 	{!!Form::label('archivo', 'archivo');!!}
-		{!!Form::file('archivo',["class" => "archivos"]);!!}		
+	 	 <input type="file" class="archivos" name="archivo[]" multiple />	
 	</div>	
 	<div class="form-group ">
 		<div class="col-xs-6 col-sm-6 col-md-6">

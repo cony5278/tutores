@@ -13,8 +13,8 @@ class Usuarios extends Controller
      private  $suario;
      public function __construct()
     {
-            $this->middleware('guest');    
-            $this->usuario=new User();     
+            $this->usuario=new User(); 
+            $this->middleware('guest');                
     }
     /**
      * Display a listing of the resource.
