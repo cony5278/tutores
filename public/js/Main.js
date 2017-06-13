@@ -22,7 +22,8 @@ $(document).ready(function(){
 		 						   "publicaciones",
 		 						   "POST",
 		 						   {"area":"formularioArea","tarea":"formularioTarea","publicacion":"formularioPublicacion"});
-
+		 imagen =new Imagen("formularioPublicacion");
+		 imagen.cambiar();
 
 	/**
 	*FIN

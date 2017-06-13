@@ -16,6 +16,7 @@
 	 	{!!Form::label('archivo', 'archivo');!!}
 	 	 <input type="file" class="archivos" name="archivo[]" multiple />	
 	</div>	
+	<img src=""/>
 	<div class="form-group ">
 		<div class="col-xs-6 col-sm-6 col-md-6">
 			<button type="button"  class="atras-area btn btn-primary btn-lg btn-block" onclick="formulario.atras('atras-area','publicacion-areas','publicacion-tareas')">Atras</button>
