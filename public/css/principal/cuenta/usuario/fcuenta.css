@@ -202,3 +202,11 @@ li a:hover {
 }
 
 /* .....NavBar: Fully showing nav bar..... */
+
+/**
+*carga de imagenes
+*/
+.grupo-imagenes img{
+  width: 40px;
+  height: 40px;  
+}

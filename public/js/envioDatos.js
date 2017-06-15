@@ -3,12 +3,13 @@
 *formularioPublicacion=>id del formulario el cual va enviar la informacion al controlador
 *ruta=>ruta del controlador,
 *metodo=>metodo POST,PUT,GET
-*json=>tiene el objeto json con los dormualrios
+*archivo=>objeto arhivos que almacena todos los archivos
 */
-function EnvioDatos(formularioPublicacion,ruta,metodo) {
+function EnvioDatos(formularioPublicacion,ruta,metodo,archivo) {
 	this.formularioPublicacion=formularioPublicacion;//variable que almacena el id del ultimo formulario que va enviar los datos
 	this.ruta =ruta;//variable que almacena la ruta donde se van a enviar los datos
 	this.metodo=metodo;//metodo de envio POST,PUT ,GET	
+	this.archivo=archivo;
 	/**
 	*metodo que concatena los serialize de todos los formularios por los que se han pasado
 	*/
@@ -42,16 +43,15 @@ function EnvioDatos(formularioPublicacion,ruta,metodo) {
 	/**
 	*metodo que adiciona los datos del formulario
 	*/
+	
 	this.addDatos=function(){		
-		var formData = new FormData();		
+		
 
 		$.each($("#"+this.formularioPublicacion).serializeArray(), function(i, json) {			
-		   		formData.append(json.name, json.value);		
-		});			     
-	     var archivos=$("#"+this.formularioPublicacion+" .archivos")[0].files;
-	     var size=archivos.length;
-	     for (var i = 0; i < size; i++) {
-	     		formData.append("archivos[]",archivos[i]);
+		   		this.archivo.getMap().append(json.name, json.value);		
+		});	
+		for (var value of this.archivo.getMap()) {    	
+	     		formData.append("archivos[]",value);
 	     }	   
 		return formData;
 	}

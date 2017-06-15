@@ -13,7 +13,7 @@ class Documento extends Model
     protected $fillable=['id','archivo','tipo_documento','tarea_id'];
    
 
-    public function crear(Request $request,$tarea_id){      
+    public function crear(Request $request,$tarea_id){       
         foreach($request->file('archivos') as $file){ 
     		$archivo=new Archivos($file); 
     		$archivo->guardarArchivo();	     

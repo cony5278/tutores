@@ -7,7 +7,7 @@
 @endsection
 
 @section('js')
-		{!! Html::script('../js/imagen.js')!!}	
+		{!! Html::script('../js/archivo.js')!!}	
 		{!! Html::script('../js/domDivVisible.js')!!}	
 		{!! Html::script('../js/validacion.js')!!}	
 		{!! Html::script('../js/envioDatos.js')!!}	

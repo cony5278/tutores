@@ -30,11 +30,13 @@ class Archivos
       		break;
       		case 'bmp':
       			return 'img';
-      		break;  	      		
+      		break;            	      		
       		default:
+            echo 'extensiones '.$this->extension;
       			return $this->extension;
       		break;
       	}
+
       	return null;
       }
       /**
@@ -64,6 +66,7 @@ class Archivos
       public Function guardarArchivo(){     
         \Storage::disk('local')->put($this->rutaCarpeta.'/'.$this->nombre,\File::get($this->file));    
       }
+      
       /**
       *metodos get y set
       */

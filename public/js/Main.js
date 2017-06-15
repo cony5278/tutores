@@ -18,12 +18,14 @@ $(document).ready(function(){
 	/**
 	*PASO A PASO PARA HACER UNA PUBLICACION
 	*/
+		 archivo =new Archivo("formularioPublicacion","grupo-imagenes");
+		 archivo.inicializar();
 		 formulario=new EnvioDatos("formularioPublicacion",
 		 						   "publicaciones",
 		 						   "POST",
-		 						   {"area":"formularioArea","tarea":"formularioTarea","publicacion":"formularioPublicacion"});
-		 imagen =new Imagen("formularioPublicacion");
-		 imagen.cambiar();
+		 						   archivo);
+		
+
 
 	/**
 	*FIN

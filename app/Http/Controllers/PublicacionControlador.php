@@ -49,9 +49,9 @@ class PublicacionControlador extends Controller
      */
     public function store(Request $request)
     {
-        $tareas=$this->tarea->crear($request,$request['area']);  
-        $this->documento->crear($request,$tareas->id);
-        $this->publicacion->crear($request,$tareas->id);      
+        //$tareas=$this->tarea->crear($request,$request['area']);  
+        //$this->documento->crear($request,$tareas->id);
+        //$this->publicacion->crear($request,$tareas->id);      
         return $request->all();       
     }
 
