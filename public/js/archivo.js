@@ -2,15 +2,16 @@ function Archivo(idFormulario,contenedorArchivo) {
 	this.idFormulario=idFormulario;
 	this.contenedorArchivo=contenedorArchivo;
 	this.map;
+	this.nombre="archivo-";
 	this.inicializar=function(){
-		this.map=new FormData();
+		this.map=new Array();
 	}
 	this.addArchivos=function(i,archivo){
-		this.map.append(i,archivo);
+		this.map[this.nombre+i]=archivo;
 	}
-	this.eliminar=function(numero){
-		
-		this.map.delete(numero);
+	this.eliminar=function(numero){		
+		console.log("eliminacion "+this.nombre+numero);
+		this.map[this.nombre+numero]=null;
 	}
 	this.cargar=function(evento){
 							    
@@ -23,13 +24,18 @@ function Archivo(idFormulario,contenedorArchivo) {
 					var reader = new FileReader();
 					if(ruta!=null){	
 						this.addArchivos(i,archivos[i]);				
-						objeto.contenedorArchivos(ruta,i);
-				 	}else{							 	
-					 	reader.onload = function (e) {
-					 		objeto.addArchivos(i,archivos[i]);
-							objeto.contenedorArchivos(e.target.result,i);					   
-						}						
-						reader.readAsDataURL(archivos[i]);					
+						this.contenedorArchivos(ruta,i);
+				 	}else{				 	
+					 
+						reader.onload = (function(theFile) {
+					        return function(e) {					       
+					 		objeto.addArchivos(i,theFile);					 		
+							objeto.contenedorArchivos(e.target.result,i);		
+					        };
+					      })(archivos[i]);
+
+					      // Read in the image file as a data URL.
+					      reader.readAsDataURL(archivos[i]);				
 				 	}	
 			 		   
 			}
@@ -78,7 +84,9 @@ function Archivo(idFormulario,contenedorArchivo) {
 		this.eliminar(contenedor.attr('class').slice(-1));
 
 	}
-
+	this.getNombre=function(){
+		return this.nombre;
+	}
 	this.getMap=function(){
 		return this.map;
 	}

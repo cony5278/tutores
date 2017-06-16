@@ -172,13 +172,14 @@ fin del estilo del input   uscar
 }
 @media only screen and (max-width: 500px) {
   .contenedor-izquierda{
-    width: 100%;
+    width: 450px;
     height: auto;
   }
   .contenedor-cuenta{
     height: auto;
   }
 }
+
 ul {
     list-style-type: none;
     margin: 0;

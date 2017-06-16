@@ -4,7 +4,7 @@
 
   </div>
 
-  <div class="contenedor-izquierda  col-xs-2 col-sm-2 col-md-2">
+  <div class="contenedor-izquierda  col-xs-3 col-sm-3 col-md-3">
       @include('usuarios/menu')
   </div>
 
@@ -32,10 +32,10 @@
   </div>
   <!-- este es el contenedor donde va a ir las publicaciones que el usuario a publicado y tambien algo en la cabeza -->
   <div class="contenedor-usuario-publicacion ">
-  	<div class="contenedor-cabeza col-xs-10 col-sm-10 col-md-10">
+  	<div class="contenedor-cabeza col-xs-9 col-sm-9 col-md-9">
     			izquierda
     	</div>
-    	<div class="contenedor-cuerpo col-xs-10 col-sm-10 col-md-10">
+    	<div class="contenedor-cuerpo col-xs-9 col-sm-9 col-md-9">
     			derecha
     	</div>
   </div>

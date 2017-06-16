@@ -45,13 +45,14 @@ function EnvioDatos(formularioPublicacion,ruta,metodo,archivo) {
 	*/
 	
 	this.addDatos=function(){		
+		var formData = new FormData();
 		
-
 		$.each($("#"+this.formularioPublicacion).serializeArray(), function(i, json) {			
-		   		this.archivo.getMap().append(json.name, json.value);		
+		   		formData.append(json.name, json.value);		
 		});	
-		for (var value of this.archivo.getMap()) {    	
-	     		formData.append("archivos[]",value);
+		for (j in this.archivo.getMap()) {   
+			console.log(j);	
+	     	formData.append("archivos[]",this.archivo.getMap()[j]);
 	     }	   
 		return formData;
 	}
