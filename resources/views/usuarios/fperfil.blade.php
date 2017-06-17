@@ -1,8 +1,9 @@
 <div class="row">	
-	<a href="#" class="perfil-atras">
+	<a href="#" class="perfil-atras" onclick="domDivVisiblePerfil.visibleClass()">
 	  <span class="glyphicon glyphicon-menu-up"></span>
 	</a>
 </div>
+
 <div class="login-form">
 	<a href="#">
 	 	{{ HTML::image('../img/logo.jpg', "Imagen", array('class'=>'img-cambir-perfil img-circle  img-responsive center-block','id'=>'img-cuenta-config')) }}

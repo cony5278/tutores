@@ -7,6 +7,7 @@
 @endsection
 
 @section('js')
+		{!! Html::script('../js/hasMap.js')!!}	
 		{!! Html::script('../js/archivo.js')!!}	
 		{!! Html::script('../js/domDivVisible.js')!!}	
 		{!! Html::script('../js/validacion.js')!!}	

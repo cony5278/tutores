@@ -14,7 +14,7 @@ function Map() {
     };
 
     this.remove = function (key) {
-        this.keys.remove(key);
+        this.keys[key]=null;
         this.data[key] = null;
     };
 

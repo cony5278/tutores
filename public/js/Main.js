@@ -5,15 +5,15 @@ $(document).ready(function(){
 											"configuracion-usuario",
 											"contenedor-usuario-publicacion",
 											true);	
-		domDivVisible.onClick();	
+		//domDivVisible.onClick();	
 	//fin
 	//hacer visible el perfil del usuario	
-		var domDivVisiblePerfil=new DomDivVisible("img-perfil",
+		 domDivVisiblePerfil=new DomDivVisible("img-perfil",
 												  "perfil-atras",
 												  "contenedor-perfil",
 												  null,
 												  false);	
-		domDivVisiblePerfil.onClick();	
+		
 	//fin
 	/**
 	*PASO A PASO PARA HACER UNA PUBLICACION

@@ -32,17 +32,7 @@ function DomDivVisible(claseAccion,claseAccionOtro,claseVisible,claseContenedorO
     this.isEmpty=function (str) {
         return (!str || 0 === str.length || str === null);
     }
-  this.onClick=function(){
-  	var objeto=this;
-  	$("."+this.claseAccion).on("click", function() {   
-			objeto.visibleClass();
-	   });		
-     if(!this.isEmpty(this.claseAccionOtro)){
-        $("."+this.claseAccionOtro).on("click", function() {   
-          objeto.visibleClass();
-         });  
-      }
-  }
+  
   this.accion=function(){   
       this.visibleClass(); 
      if(!this.isEmpty(this.claseAccionOtro)){       

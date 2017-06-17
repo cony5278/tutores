@@ -3,14 +3,16 @@ function Archivo(idFormulario,contenedorArchivo) {
 	this.contenedorArchivo=contenedorArchivo;
 	this.map;
 	this.nombre="archivo-";
+	this.cont;
 	this.inicializar=function(){
 		this.map=new Array();
+		this.cont=-1;
 	}
 	this.addArchivos=function(i,archivo){
 		this.map[this.nombre+i]=archivo;
 	}
 	this.eliminar=function(numero){		
-		console.log("eliminacion "+this.nombre+numero);
+	
 		this.map[this.nombre+numero]=null;
 	}
 	this.cargar=function(evento){
@@ -18,19 +20,21 @@ function Archivo(idFormulario,contenedorArchivo) {
 			var archivos=evento.files;			  
 	     	var size=archivos.length;
 	     	var objeto=this;   	   
-
-			for (var i = 0; i < size; i++) {					
+	     	this.cont++;
+			for (var i = 0; i < size; i++,this.cont++) {									
 					var ruta=this.seleccionarRuta(archivos[i].name.split('.').pop());
 					var reader = new FileReader();
 					if(ruta!=null){	
-						this.addArchivos(i,archivos[i]);				
-						this.contenedorArchivos(ruta,i);
+						console.log("adicionar archivos "+this.cont);
+						this.addArchivos(this.cont,archivos[i]);				
+						this.contenedorArchivos(ruta,this.cont);
 				 	}else{				 	
 					 
 						reader.onload = (function(theFile) {
-					        return function(e) {					       
-					 		objeto.addArchivos(i,theFile);					 		
-							objeto.contenedorArchivos(e.target.result,i);		
+					        return function(e) {		
+					        objeto.cont++;					        		       
+					 		objeto.addArchivos(objeto.cont,theFile);					 		
+							objeto.contenedorArchivos(e.target.result,objeto.cont);		
 					        };
 					      })(archivos[i]);
 
@@ -81,7 +85,9 @@ function Archivo(idFormulario,contenedorArchivo) {
 	this.cerrarCuadroArchivo=function(evento){	
 		var contenedor=$(evento);
 		contenedor.parent().css("display", "none" );
-		this.eliminar(contenedor.attr('class').slice(-1));
+		var id=contenedor.attr('class').split("-");
+		console.log("ELIMINA "+id[3]);
+		this.eliminar(id[3]);
 
 	}
 	this.getNombre=function(){
