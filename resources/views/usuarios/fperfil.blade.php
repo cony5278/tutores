@@ -1,5 +1,5 @@
 <div class="row">	
-	<a href="#" class="perfil-atras" onclick="domDivVisiblePerfil.visibleClass()">
+	<a href="#" class="perfil-atras" onclick="domDivVisiblePerfil.visibleContenedor()">
 	  <span class="glyphicon glyphicon-menu-up"></span>
 	</a>
 </div>

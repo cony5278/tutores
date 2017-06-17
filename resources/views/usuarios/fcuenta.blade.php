@@ -31,7 +31,7 @@
         </div>
   </div>
   <!-- este es el contenedor donde va a ir las publicaciones que el usuario a publicado y tambien algo en la cabeza -->
-  <div class="contenedor-usuario-publicacion ">
+  <div class="contenedor-usuario-publicacion" >
     <div class="contenedor-cabeza col-xs-12 col-sm-12 col-md-9">
           izquierda
       </div>
@@ -40,5 +40,9 @@
       </div>
   </div>
 
-  
+ <div class="contenedor-usuario-documentos" >
+    documentos
+  </div>
+
+
 </div>

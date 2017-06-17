@@ -86,9 +86,7 @@ function Archivo(idFormulario,contenedorArchivo) {
 		var contenedor=$(evento);
 		contenedor.parent().css("display", "none" );
 		var id=contenedor.attr('class').split("-");
-		console.log("ELIMINA "+id[3]);
 		this.eliminar(id[3]);
-
 	}
 	this.getNombre=function(){
 		return this.nombre;

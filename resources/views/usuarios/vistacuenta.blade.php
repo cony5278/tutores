@@ -9,7 +9,7 @@
 @section('js')
 		{!! Html::script('../js/hasMap.js')!!}	
 		{!! Html::script('../js/archivo.js')!!}	
-		{!! Html::script('../js/domDivVisible.js')!!}	
+		{!! Html::script('../js/contenedor.js')!!}	
 		{!! Html::script('../js/validacion.js')!!}	
 		{!! Html::script('../js/envioDatos.js')!!}	
 @endsection

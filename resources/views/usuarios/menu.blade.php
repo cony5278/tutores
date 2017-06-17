@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
              <a class="navbar-brand"  href="#">
-                {{ HTML::image('../img/logo.jpg', "Imagen", array('class'=>'img-circle img-perfil','onclick'=>'domDivVisiblePerfil.visibleClass()')) }}
+                {{ HTML::image('../img/logo.jpg', "Imagen", array('class'=>'img-circle img-perfil','onclick'=>'domDivVisiblePerfil.visibleContenedor()')) }}
                <h5>Juan camilo rodriguez</h5>
             </a>
         </div>
@@ -25,9 +25,9 @@
            <label class="lbuscar">buscar publicación</label>
     </div>
     <ul>
-        <li><a class="img-config">sdf</a></li>
-        <li><a>sdf</a></li>
-        <li><a>sdf</a></li>
+        <li><a class="img-config" onclick="contenedorConfiguracion.visibleOcultarContenedores();">config</a></li>
+        <li><a onclick="contenedorPublicacion.visibleOcultarContenedores();">publi</a></li>
+        <li><a onclick="contenedorDocumento.visibleOcultarContenedores();">doc</a></li>
         <li><a>sdf</a></li>                 
     </ul>
 
