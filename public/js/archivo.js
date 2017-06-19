@@ -24,8 +24,7 @@ function Archivo(idFormulario,contenedorArchivo) {
 			for (var i = 0; i < size; i++,this.cont++) {									
 					var ruta=this.seleccionarRuta(archivos[i].name.split('.').pop());
 					var reader = new FileReader();
-					if(ruta!=null){	
-						console.log("adicionar archivos "+this.cont);
+					if(ruta!=null){						
 						this.addArchivos(this.cont,archivos[i]);				
 						this.contenedorArchivos(ruta,this.cont);
 				 	}else{				 	

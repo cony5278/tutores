@@ -21,8 +21,8 @@ class CreatePublicacionsTable extends Migration
             $table->dateTime('fecha_inicial');
             $table->dateTime('fecha_final');
             $table->enum('estado',['URGENTE','MUYURGENTE'])->deafault('URGENTE');
-            $table->integer('tarea_id')->unsigned();
-            $table->foreign('tarea_id')->references('id')->on('tareas');
+            $table->integer('id_usuario')->unsigned();
+            $table->foreign('id_usuario')->references('id')->on('users');         
             $table->integer('usuario_aceptado_id')->unsigned()->nullable();
             $table->foreign('usuario_aceptado_id')->references('id')->on('users');
             $table->timestamps();

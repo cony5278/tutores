@@ -4,31 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Area;
-use App\Documento;
-use App\Tarea;
+use UsoDeRenderSectionsL5\Http\Requests;
 use App\Publicacion;
-class PublicacionControlador extends Controller
+class CuentaUsuario extends Controller
 {
+    private $area;    
     private $publicacion;
-    private $tarea;    
-    private $documento;
      public function __construct()
-    {   
-
-        $this->publicacion=new Publicacion();
-        $this->tarea=new Tarea();   
-        $this->documento=new Documento();
-        //$this->middleware('guest');           
+    {          
+        $this->area=new Area();  
+         $this->publicacion=new Publicacion();       
+               
     }
     /**
-
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    {    
+         if($request->ajax()){  
+            $vista=view('usuarios.publicacion.fpublicacion')->with('publicaciones',$this->publicacion->publicacionUsuarioAll())->render();
+            return response()->json(array('success' => true, 'html'=>$vista));
+         }else{       
+            return view('usuarios.vistacuenta')->with(['areas'=>$this->area->areaAll(),
+                                                       'publicaciones'=>$this->publicacion->publicacionUsuarioAll()]);
+         }
     }
 
     /**
@@ -49,10 +50,7 @@ class PublicacionControlador extends Controller
      */
     public function store(Request $request)
     {
-        $publicacion=$this->publicacion->crear($request);   
-        $tareas=$this->tarea->crear($request,$request['area'],$publicacion->id); 
-        $this->documento->crear($request,$tareas->id);         
-        return $request->all();       
+        //
     }
 
     /**

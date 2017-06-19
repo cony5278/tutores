@@ -18,7 +18,9 @@ class CreateTareasTable extends Migration
             $table->string('titulo_tarea',25);  
             $table->enum('estado_entrega',['ACEPTADO','RECHAZADO','ENTREGADO','NOENTREGADO']);
             $table->integer('area_id')->unsigned();
-            $table->foreign('area_id')->references('id')->on('areas');      
+            $table->foreign('area_id')->references('id')->on('areas');  
+            $table->integer('publicacion_id')->unsigned();
+            $table->foreign('publicacion_id')->references('id')->on('publicaciones');    
             $table->timestamps();
         });
     }

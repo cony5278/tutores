@@ -1,5 +1,6 @@
 html,body {
     height:100%;
+    font: Segoe UI Local;
 }
 
 .login-form{
@@ -10,4 +11,26 @@ html,body {
   -moz-border-radius:4px;
   -webkit-border-radius:4px;
   margin:50px auto;
+}
+
+.notificacion{
+	display: none;
+	background-color: #397;
+	z-index: 3;
+	width: 20%;
+	position: absolute;
+	left: 80%;
+	top: 50%;
+}
+
+.notificacion-mensajes{
+	width: 100%;
+	height: auto;
+	position: relative;
+	background-color:#632;
+}
+.notificacion-mensajes a{
+	position: absolute;
+	left: 90%;
+	top: 0;	
 }

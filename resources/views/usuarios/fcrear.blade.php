@@ -20,7 +20,7 @@
 	 	{{ Form::password('password', array('class' => 'form-control','placeholder'=>'Contraseña')) }}  
 	</div>
 	<div class="btn-group" data-toggle="buttons" style="margin-bottom: 5px">	
-	  <label class="btn btn-primary">
+	  <label class="btn btn-primary active">
 	  	{!!Form::radio('usuario','1',array('checked'));!!}
 	  	Aprendiz	    
 	  </label>	  

@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 class Publicacion extends Model
 {
  protected $table='publicaciones';
-    protected $fillable=['id','titulo','descripcion','valor','fecha_inicial','fecha_final','estado','tarea_id'];    
+    protected $fillable=['id','titulo','descripcion','valor','fecha_inicial','fecha_final','estado','id_usuario'];    
     
     private function seleccionarEstado(Request $request){
     	switch ($request['estado']) {
@@ -24,18 +25,27 @@ class Publicacion extends Model
     	}
     	return null;
     }
-    public function crear(Request $request,$tarea_id){
+    public function crear(Request $request){
     	
-            $this->create([         
+            return $this->create([         
 	            'titulo'=>$request['titulo'],
 	            'descripcion'=>$request['descripcion'],
 	            'fecha_inicial'=>Carbon::now(),
 	            'fecha_final'=>$request['fecha_final'],
 	            'valor'=>$request['valor'],
-	            'estado'=>$this->seleccionarEstado($request),
-                'tarea_id'=>$tarea_id,
+	            'estado'=>$this->seleccionarEstado($request),                
+                'id_usuario'=>Auth::user()->id
             ]);
     }
+    public function publicacionUsuarioAll(){
+         return $this->where('id_usuario',Auth::user()->id)->get();
+    }
 
-      
+    /**
+     * obtener las tareas para las publicaciones
+    */
+    public function tareas()
+    {
+        return $this->hasMany('App\Tarea');
+    }
 }

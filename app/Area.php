@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 class Area extends Model
 {
 	protected $table="areas";
-       use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -17,6 +16,8 @@ class Area extends Model
         'id', 'nombre',
     ];
 
-     
+    public function areaAll(){
+        return $this->all();
+    }     
      
 }

@@ -24,5 +24,16 @@ class Documento extends Model
 		    ]);
         }
     }
+    public function extension($nombreArchivo){
+            $archivos=new Archivos(null); 
+        return $archivos->cadenaExtension($nombreArchivo);
+    }
+     /**
+     * Get the post that owns the comment.
+     */
+    public function tareas()
+    {
+        return $this->belongsTo('App\Tarea');
+    }
 
 }

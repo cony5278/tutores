@@ -17,6 +17,8 @@
 	<title>App | @yield('titulo')</title>
 </head>
 <body>
+	@yield('notificacion')
+
 	@yield('cabeza')
 
 	@section('cuerpo')

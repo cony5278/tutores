@@ -1,47 +1,63 @@
 <div class="contenedor-cuenta">
   <div class="contenedor-perfil">
-    @include('usuarios/fperfil')
+    @include('usuarios/perfil')
 
   </div>
 
-  <div class="col-sm-3 sidenav">
+  <div class="col-sm-3 sidenav contenedor-izquierda" >
       @include('usuarios/menu')
   </div>
 
   <div class="configuracion-usuario">
-        <div class="configuracion-usuario-izquierda col-xs-12 col-sm-12 col-md-2">
-          izquierda
+        <div class="configuracion-usuario-izquierda col-xs-12 col-sm-2 col-md-2">
+
+           <ul class="lista"> 
+            <li><a href="#">Publicacion</a></li> 
+            <li><a href="#">Opcion1</a></li> 
+            <li><a href="#">Opcion1</a></li> 
+            <li><a href="#">Opcion1</a></li> 
+            <li><a href="#">Opcion1</a></li> 
+          </ul>
+    
         </div>
-        <div class="configuracion-usuario-derecha col-xs-12 col-sm-12 col-md-7">
+        <div class="configuracion-usuario-derecha col-xs-12 col-sm-7 col-md-7">
           {!! Form::open(['route' => 'publicaciones.store', 'id' => 'formularioPublicacion','metthod'=>'POST','files'=> true]) !!}
            
+
             <div>
-                <a class="configuracion-derecha-uno">1</a>
-                 @include('usuarios/publicaciones/farea')
+               <div class="configuracion-derecha-numero"><a>1</a></div>               
+                @include('usuarios/configuracion/farea')
             </div>
             <div>
-              <a class="configuracion-derecha-dos">2</a>
-                 @include('usuarios/publicaciones/ftarea')
+               <div class="configuracion-derecha-numero"><a>2</a></div>
+                 @include('usuarios/configuracion/ftarea')
             </div>
             <div>
-               <a class="configuracion-derecha-tres">3</a>
-                 @include('usuarios/publicaciones/fpublicacion')
+                <div class="configuracion-derecha-numero"><a>3</a></div>
+                 @include('usuarios/configuracion/fpublicacion')
            </div>
          {!! Form::close() !!}
         </div>
   </div>
-  <!-- este es el contenedor donde va a ir las publicaciones que el usuario a publicado y tambien algo en la cabeza -->
-  <div class="contenedor-usuario-publicacion" >
-    <div class="contenedor-cabeza col-xs-12 col-sm-12 col-md-9">
-          izquierda
-      </div>
-      <div class="contenedor-cuerpo col-xs-12 col-sm-12 col-md-9">
-          derecha
-      </div>
+ <div class="contenedor-usuario-documento">    
+        <div class=" col-xs-12 col-sm-9 col-md-9" style="background: #723;">
+          documentos
+     </div>
   </div>
 
- <div class="contenedor-usuario-documentos" >
-    documentos
+   <div class="contenedor-usuario-notificacion"  >
+     <div class=" col-xs-12 col-sm-9 col-md-9" style="background: #723;">
+           @include('usuarios/publicacion/fpublicacion')
+     </div>
+  </div>
+  <!-- este es el contenedor donde va a ir las publicaciones que el usuario a publicado y tambien algo en la cabeza -->
+  <div class="contenedor-usuario-publicacion" >
+    <div class="contenedor-cabeza col-xs-12 col-sm-9 col-md-9">
+          izquierda
+      </div>
+      <div class="contenedor-cuerpo col-xs-12 col-sm-9 col-md-9">
+            @include('usuarios/publicacion/fpublicacion')
+      </div>
   </div>
 
 
