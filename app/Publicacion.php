@@ -33,12 +33,15 @@ class Publicacion extends Model
 	            'fecha_inicial'=>Carbon::now(),
 	            'fecha_final'=>$request['fecha_final'],
 	            'valor'=>$request['valor'],
-	            'estado'=>$this->seleccionarEstado($request),                
-                'id_usuario'=>Auth::user()->id
+                'id_usuario'=>Auth::user()->id,
+	            'estado'=>$this->seleccionarEstado($request)  ,    
             ]);
     }
     public function publicacionUsuarioAll(){
-         return $this->where('id_usuario',Auth::user()->id)->get();
+         return $this->where('id_usuario',Auth::user()->id)->orderBy('id','desc')->get();
+    }
+     public function publicacionUsuarioUltimo(){
+         return $this->where('id_usuario',Auth::user()->id)->orderBy('id','desc')->take(1)->first();
     }
 
     /**

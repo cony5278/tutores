@@ -7,6 +7,7 @@
 @endsection
 
 @section('js')
+		{!! Html::script('../js/menu.js')!!}	
 		{!! Html::script('../js/notificacion.js')!!}	
 		{!! Html::script('../js/hasMap.js')!!}	
 		{!! Html::script('../js/archivo.js')!!}	

@@ -20,11 +20,9 @@ class CreatePublicacionsTable extends Migration
             $table->double('valor',15,3);
             $table->dateTime('fecha_inicial');
             $table->dateTime('fecha_final');
-            $table->enum('estado',['URGENTE','MUYURGENTE'])->deafault('URGENTE');
-            $table->integer('id_usuario')->unsigned();
-            $table->foreign('id_usuario')->references('id')->on('users');         
-            $table->integer('usuario_aceptado_id')->unsigned()->nullable();
-            $table->foreign('usuario_aceptado_id')->references('id')->on('users');
+            $table->enum('estado',['URGENTE','MUYURGENTE'])->deafault('URGENTE');        
+            $table->integer('id_usuario')->unsigned()->nullable();
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();
         });
     }

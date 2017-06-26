@@ -12,6 +12,7 @@ function EnvioDatos(formularioPublicacion,ruta,metodo,archivo,contenedor) {
 	this.metodo=metodo;//metodo de envio POST,PUT ,GET	
 	this.archivo=archivo;
 	this.contenedor=contenedor;
+
 	/**
 	*metodo que concatena los serialize de todos los formularios por los que se han pasado
 	*/
@@ -52,10 +53,9 @@ function EnvioDatos(formularioPublicacion,ruta,metodo,archivo,contenedor) {
 		$.each($("#"+this.formularioPublicacion).serializeArray(), function(i, json) {			
 		   		formData.append(json.name, json.value);		
 		});	
-		for (j in this.archivo.getMap()) {   
-			console.log(j);	
+		for (j in this.archivo.getMap()) {  
 	     	formData.append("archivos[]",this.archivo.getMap()[j]);
-	     }	   
+	    }	   
 		return formData;
 	}
 	/**
@@ -71,39 +71,62 @@ function EnvioDatos(formularioPublicacion,ruta,metodo,archivo,contenedor) {
 	            contentType: false,
                 processData: false,
                 dataType: 'json',
-	            success: function(res)
-	            {
-	                objeto.ajaxRenderSection("usuario",objeto.contenedor);
+	            success: function(data)
+	            {	
+	                objeto.ajaxRenderSection(data);
 	            },
-	            error: function(jqXHR, textStatus, errorThrown)
-	            {
-	              
+	            error: function(data)
+	            {	     	                 	
+					objeto.alerta(data.responseJSON);
 	            }
 	       });	  
 	}
-	this.ajaxRenderSection=function(url,contenedor) {
-        $.ajax({
-            type: 'GET',
-            url: url,
-            dataType: 'json',
-            success: function (data) {
-           
-            	notificacion.crearContenedor();
-            	notificacion.crearNotificacion("Su publicacion se ha procesado exitosamente","blue");        
-                $('.'+contenedor).empty().append(data.html); //se toma la data en formato json, luego se borra el Div padre de el Sections y se pinta el json (data) como htlm
-            	contenedorPublicacion.visibleOcultarContenedores();
-            },
-            error: function (data) {
-            	alert("error");
-            	console.log(data);
-                var errors = data.responseJSON;
-                if (errors) {
-                    $.each(errors, function (i) {
-                        console.log(errors[i]);
-                    });
-                }
-            }
-        });
+	this.alerta=function(errors){
+		    var objeto=this;
+		    var notificacion=new Notificacion();
+			notificacion.crearContenedor();
+        	$.each(errors, function(index, value) { 
+				notificacion.crearNotificacion(value,"DANGER");
+				objeto.validacionCssColor(index,"1px solid #FE2E64");						
+        	});  
+        	
+
+	}
+	this.ajaxRenderSection=function(data) {	
+          	var notificacion=new Notificacion();
+			notificacion.crearContenedor();
+        	notificacion.crearNotificacion("Su publicación se ha procesado exitósamente","SUCCESS");        
+			this.volverVaciosCamposFormulario(data); 
+     		$('.'+this.contenedor).prepend(data.html); //se toma la data en formato json, luego se borra el Div padre de el Sections y se pinta el json (data) como htlm
+			contenedorPublicacion.visibleOcultarContenedores();
+			formulario.atras('atras-tarea','publicacion-tareas','publicacion-publicaciones');
+			formulario.atras('atras-area','publicacion-areas','publicacion-tareas');
+    		this.renewToken(data.token);
     }
+    this.validacionCssColor=function(name,css){    
+		$('input[name='+name+']').css("border",css);	
+		 
+    }
+    this.volverVaciosCamposFormulario=function(data){
+    	$.each($("#"+this.formularioPublicacion).serializeArray(), function(i, json) {			
+		   		if(json.name!="estado"){
+		   			$('input[name='+json.name+']').val("");	
+		   		}			   		   	
+		});			
+		$('#fecha_final').val(data.hora_final);
+    	this.borrarArchivos();
+    
+    }
+    this.borrarArchivos=function(){
+    	this.archivo.setMap(null);//eliminar el map de archivos
+    	this.archivo.inicializar();
+    	$("."+this.archivo.getContenedorArchivo()).empty();
+    }
+    this.renewToken=function(value){
+		$('input[name=_token]').val(value);	
+    }
+
 }
 
+
+      

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsuarioRequest;
 use App\User;
-use App\Controllers\Auth\Re
+
 
 class Usuarios extends Controller
 {
@@ -24,7 +24,7 @@ class Usuarios extends Controller
     public function index()
     {
  
-        return view("welcome");
+        return view("/usuario/sesion");
     }
 
     /**

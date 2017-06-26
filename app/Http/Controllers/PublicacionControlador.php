@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PublicacionCuenta;
 use App\Area;
 use App\Documento;
 use App\Tarea;
 use App\Publicacion;
+use Carbon\Carbon;
 class PublicacionControlador extends Controller
 {
     private $publicacion;
@@ -28,7 +30,7 @@ class PublicacionControlador extends Controller
      */
     public function index()
     {
-        //
+        //   
     }
 
     /**
@@ -38,7 +40,7 @@ class PublicacionControlador extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -47,12 +49,15 @@ class PublicacionControlador extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(PublicacionCuenta $request)
+    {        
+       
         $publicacion=$this->publicacion->crear($request);   
         $tareas=$this->tarea->crear($request,$request['area'],$publicacion->id); 
-        $this->documento->crear($request,$tareas->id);         
-        return $request->all();       
+        $this->documento->crear($request,$tareas->id); 
+        $vista=view('usuarios.publicacion.fpublicacion')->with(['publicacion'=>$this->publicacion->publicacionUsuarioUltimo(),'publicar'=>false])->render();
+        return response()->json(array('success' => true, 'html'=>$vista,'token'=>csrf_token(),'hora_final'=>Carbon::now()->format('Y-m-d')),200);       
+         
     }
 
     /**
@@ -64,6 +69,7 @@ class PublicacionControlador extends Controller
     public function show($id)
     {
         //
+        return "EDICION ".$id;
     }
 
     /**
@@ -74,7 +80,7 @@ class PublicacionControlador extends Controller
      */
     public function edit($id)
     {
-        //
+       
     }
 
     /**
@@ -86,7 +92,9 @@ class PublicacionControlador extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      
+        return "EDICION ".$id;
+
     }
 
     /**
@@ -97,6 +105,6 @@ class PublicacionControlador extends Controller
      */
     public function destroy($id)
     {
-        //
+          return "ELIMINACION ".$id;
     }
 }

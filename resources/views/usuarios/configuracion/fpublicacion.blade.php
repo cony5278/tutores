@@ -1,14 +1,6 @@
 <div class="paso-paso-publicacion">
-	<h1>publicacion</h1>
+	<h3>publicacion</h3>
 	<div class="publicacion-publicaciones" style="display: none;">
-	@if(count($errors)>0)
-		@foreach($errors->all() as $error)Route::resource middelware laravel
-		<div class="alert alert-danger">
-		  <strong>{{$error}}</strong> 
-		</div>
-		@endforeach
-	@endif
-
 	 
 		<div class="form-group">
 		 	{!!Form::label('titulo', 'Titulo');!!}
@@ -20,7 +12,7 @@
 		</div>	
 		<div class="form-group">
 		 	{!!Form::label('fecha_entrega', 'Fecha entrega');!!}	 	
-		  	{!!Form::date('fecha_final', \Carbon\Carbon::now());!!}		
+		  	{!!Form::date('fecha_final', \Carbon\Carbon::now(),array('id' => 'fecha_final'));!!}		
 		</div>	
 		<div class="form-group">
 		 	{!!Form::label('valor', 'Valor');!!}	 	

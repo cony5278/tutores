@@ -15,7 +15,6 @@ html,body {
 
 .notificacion{
 	display: none;
-	background-color: #397;
 	z-index: 3;
 	width: 20%;
 	position: absolute;
@@ -23,14 +22,3 @@ html,body {
 	top: 50%;
 }
 
-.notificacion-mensajes{
-	width: 100%;
-	height: auto;
-	position: relative;
-	background-color:#632;
-}
-.notificacion-mensajes a{
-	position: absolute;
-	left: 90%;
-	top: 0;	
-}

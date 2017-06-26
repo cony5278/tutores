@@ -22,7 +22,7 @@
         </div>
         <div class="configuracion-usuario-derecha col-xs-12 col-sm-7 col-md-7">
           {!! Form::open(['route' => 'publicaciones.store', 'id' => 'formularioPublicacion','metthod'=>'POST','files'=> true]) !!}
-           
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div>
                <div class="configuracion-derecha-numero"><a>1</a></div>               
@@ -45,7 +45,7 @@
      </div>
   </div>
 
-   <div class="contenedor-usuario-notificacion"  >
+   <div class="contenedor-usuario-notificacion">
      <div class=" col-xs-12 col-sm-9 col-md-9" style="background: #723;">
            @include('usuarios/publicacion/fpublicacion')
      </div>
@@ -55,8 +55,12 @@
     <div class="contenedor-cabeza col-xs-12 col-sm-9 col-md-9">
           izquierda
       </div>
-      <div class="contenedor-cuerpo col-xs-12 col-sm-9 col-md-9">
-            @include('usuarios/publicacion/fpublicacion')
+      <div  class="contenedor-cuerpo scroll-1 col-xs-12 col-sm-8 col-md-9">
+          <div class="force-overflow">        
+
+               @include('usuarios/publicacion/fpublicacion')                    
+         
+          </div>
       </div>
   </div>
 

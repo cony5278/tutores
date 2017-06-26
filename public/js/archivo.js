@@ -18,22 +18,25 @@ function Archivo(idFormulario,contenedorArchivo) {
 	this.cargar=function(evento){
 							    
 			var archivos=evento.files;			  
-	     	var size=archivos.length;
-	     	var objeto=this;   	   
+	     	var size=archivos.length;	       	   
 	     	this.cont++;
-			for (var i = 0; i < size; i++,this.cont++) {									
+	     	this.general(archivos,size);		 	 
+	}	
+	this.general=function(archivos,size){
+		var objeto=this; 
+		for (var i = 0; i < size; i++,this.cont++) {									
 					var ruta=this.seleccionarRuta(archivos[i].name.split('.').pop());
 					var reader = new FileReader();
 					if(ruta!=null){						
 						this.addArchivos(this.cont,archivos[i]);				
-						this.contenedorArchivos(ruta,this.cont);
+						this.contenedorArchivos(ruta,this.cont,archivos[i]);
 				 	}else{				 	
 					 
 						reader.onload = (function(theFile) {
 					        return function(e) {		
 					        objeto.cont++;					        		       
 					 		objeto.addArchivos(objeto.cont,theFile);					 		
-							objeto.contenedorArchivos(e.target.result,objeto.cont);		
+							objeto.contenedorArchivos(e.target.result,objeto.cont,theFile);		
 					        };
 					      })(archivos[i]);
 
@@ -42,17 +45,39 @@ function Archivo(idFormulario,contenedorArchivo) {
 				 	}	
 			 		   
 			}
-			 	 
-	}	
-	this.contenedorArchivos=function(ruta,i){	
+	}
+	this.cargarDrop=function(e) {
+	    e.preventDefault();
+	    if(e.dataTransfer && e.dataTransfer.files.length != 0){
+	        var archivos = e.dataTransfer.files //Array of filenames
+	        var size=e.dataTransfer.files.length;
+	        this.general(archivos,size);
+	    }else{
+	        // browser doesn't support drag and drop.
+	    }   
+
+	}
+	this.contenedorArchivos=function(ruta,i,archivo){	
+		var mega=(((archivo.size/1024)/1024));
+
 		$("."+this.contenedorArchivo).append(
-			"<div style='postion:relative; class='contenedor-archivos-subida'>"+
-			"<a class='contenedor-archivos-subida-"+i+"' onclick='archivo.cerrarCuadroArchivo(this)' style='dysplay:block;'>"+
-			"x"+
-			"</a>"+
-			"<a href='#'><img src='"+ruta+"' /></a>"+
-			"</div>"
+			"<li onmouseover='archivo.informacionIn(this,"+i+")' onmouseout='archivo.informacionOut(this,"+i+")' class='contenedor-archivos-subida' onmou>"+
+			"<div class='contenedor-archivos-cerrar' id='contenedor-archivos-subida-"+i+"' onclick='archivo.cerrarCuadroArchivo(this)' style='dysplay:block;'>"+
+			"<a>x</a>"+
+			"</div>"+
+			"<img src='"+ruta+"' />"+
+			"<div class='informacion-archivo' id='informacion-archivo-"+i+"'>"+
+			archivo.name+
+			"<br>"+mega.toFixed(2)+
+			"<div>"+
+			"</li>"
 		);			
+	}
+	this.informacionOut=function(evento,i){		
+		$(evento).parent().find("#informacion-archivo-"+i).css("display","none");
+	}
+	this.informacionIn=function(evento,i){
+		$(evento).parent().find("#informacion-archivo-"+i).css("display","block");
 	}
 	/**
 	*funcion que renderiza una imagen o un archivo
@@ -77,6 +102,21 @@ function Archivo(idFormulario,contenedorArchivo) {
   				case "doc":
 			        return "http://localhost:8000/img/docx.jpg";
 			    break;	   
+			    case "pps":
+			        return "http://localhost:8000/img/point.jpg";
+			    break;	
+			    case "ppt":
+			        return "http://localhost:8000/img/point.jpg";
+			    break;	
+			    case "ppsx":
+			        return "http://localhost:8000/img/point.jpg";
+			    break;
+			     case "zip":
+			        return "http://localhost:8000/img/winrar.jpg";
+			    break;		
+			      case "rar":
+			        return "http://localhost:8000/img/winrar.jpg";
+			    break;		
 			}
 		return null;
 	}
@@ -84,7 +124,7 @@ function Archivo(idFormulario,contenedorArchivo) {
 	this.cerrarCuadroArchivo=function(evento){	
 		var contenedor=$(evento);
 		contenedor.parent().css("display", "none" );
-		var id=contenedor.attr('class').split("-");
+		var id=contenedor.attr('id').split("-");
 		this.eliminar(id[3]);
 	}
 	this.getNombre=function(){
@@ -93,5 +133,10 @@ function Archivo(idFormulario,contenedorArchivo) {
 	this.getMap=function(){
 		return this.map;
 	}
-
+	this.getContenedorArchivo=function(){
+		return this.contenedorArchivo;
+	}
+	this.setMap=function(map){
+		return this.map=map;
+	}
 }

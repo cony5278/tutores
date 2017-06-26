@@ -28,6 +28,7 @@ function Contenedor(claseVisible,json,animacion) {
   *la primera clase es la que va hacer visible las otras se van a ocultar
   */
   this.visibleOcultarContenedores=function(){ 
+
     for(i in this.json){
       if(i!=1){      
         this.visibleContenedorClase(this.json[i],false); 

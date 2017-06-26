@@ -10,11 +10,11 @@ class CuentaUsuario extends Controller
 {
     private $area;    
     private $publicacion;
-     public function __construct()
+    public function __construct()
     {          
-        $this->area=new Area();  
-         $this->publicacion=new Publicacion();       
-               
+         $this->area=new Area();  
+         $this->publicacion=new Publicacion();          
+         $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -23,13 +23,11 @@ class CuentaUsuario extends Controller
      */
     public function index(Request $request)
     {    
-         if($request->ajax()){  
-            $vista=view('usuarios.publicacion.fpublicacion')->with('publicaciones',$this->publicacion->publicacionUsuarioAll())->render();
-            return response()->json(array('success' => true, 'html'=>$vista));
-         }else{       
-            return view('usuarios.vistacuenta')->with(['areas'=>$this->area->areaAll(),
-                                                       'publicaciones'=>$this->publicacion->publicacionUsuarioAll()]);
-         }
+       
+        
+        return view('usuarios.vistacuenta')->with(['areas'=>$this->area->areaAll(),
+                                                       'publicaciones'=>$this->publicacion->publicacionUsuarioAll(),'publicar'=>true]);
+         
     }
 
     /**

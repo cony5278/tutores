@@ -47,20 +47,20 @@ $(document).ready(function(){
 												true);
 		//fin
 		 archivo =new Archivo("formularioPublicacion","grupo-imagenes");
-		 archivo.inicializar();
-		 notificacion=new Notificacion();
+		 archivo.inicializar();	
 		 formulario=new EnvioDatos("formularioPublicacion",
 		 						   "publicaciones",
 		 						   "POST",
 		 						   archivo,
-		 						   "contenedor-cuerpo",
-		 						   notificacion);
+		 						   "contenedor-cuerpo");
 		
 
 
 	/**
 	*FIN
 	*/
+		menu =new Menu();
+		publicacion=new Publicacion();
 
 		
 

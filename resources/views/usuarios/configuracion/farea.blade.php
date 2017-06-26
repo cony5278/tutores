@@ -1,13 +1,7 @@
 <div class="paso-paso-publicacion">
-	<h1>Area</h1>
+	<h3>Area</h3>
 	<div class="publicacion-areas" style="display: block;">
-	@if(count($errors)>0)
-		@foreach($errors->all() as $error)Route::resource middelware laravel
-		<div class="alert alert-danger">
-		  <strong>{{$error}}</strong> 
-		</div>
-		@endforeach
-	@endif
+	
 
 		<div class="form-group">
 			<select class="combo" name="area">
