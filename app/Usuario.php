@@ -5,8 +5,7 @@ namespace App;
 
 use App\Http\Requests\UsuarioRequest;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenti -
-.------------------------------------------------catable;
+use Illuminate\Foundation\Auth\User  as Authenticatable;
 class Usuario extends Authenticatable
 {
    use Notifiable;

@@ -10,23 +10,25 @@ class Documento extends Model
 {
     protected $table='documentos';
 
-    protected $fillable=['id','archivo','tipo_documento','tarea_id'];
+    protected $fillable=['id','archivo','tipo_documento','tarea_id','updated_at'];
    
 
     public function crear(Request $request,$tarea_id){       
-        foreach($request->file('archivos') as $file){ 
-    		$archivo=new Archivos($file); 
-    		$archivo->guardarArchivo();	     
-     		$this->create([         
-	        	'archivo'=>$archivo->getNombre(),
+        foreach($request->file('archivos') as $file){
+            $archivo=new Archivos($file);
+            $this->create([
+	        	'archivo'=> $archivo->getNombreSinExtension(),
 	            'tarea_id'=>$tarea_id,
-	            'tipo_documento'=> 'PDF',         
+	            'tipo_documento'=> $archivo->getExtension(),
+                'updated_at'=>$archivo->getCarbon(),
 		    ]);
+            $archivo->guardarArchivo();
         }
     }
-    public function extension($nombreArchivo){
-            $archivos=new Archivos(null); 
-        return $archivos->cadenaExtension($nombreArchivo);
+    public function extension($id){
+             $documento=$this->find($id);
+             $archivos=new Archivos(null);
+        return $archivos->cadenaExtension($documento->archivo,$documento->tipo_documento,$documento->updated_at);
     }
      /**
      * Get the post that owns the comment.

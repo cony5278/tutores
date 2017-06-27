@@ -30,7 +30,8 @@ class PublicacionControlador extends Controller
      */
     public function index()
     {
-        //   
+        \Storage::copy('/juan.rodriguezdia@uptc.edu.co/A/img/01-27-13Hydrangeas.jpg', '/juan.rodriguezdia@uptc.edu.co/A/img/porro.jpg');
+        return 'paso';
     }
 
     /**
@@ -69,7 +70,8 @@ class PublicacionControlador extends Controller
     public function show($id)
     {
         //
-        return "EDICION ".$id;
+        echo "EDICION ".$id;
+    return redirect()->route('login');
     }
 
     /**
@@ -92,9 +94,8 @@ class PublicacionControlador extends Controller
      */
     public function update(Request $request, $id)
     {
-      
-        return "EDICION ".$id;
-
+        $this->publicacion->actualizar($request,$id);
+       return  redirect()->action('CuentaUsuario@index');
     }
 
     /**
@@ -105,6 +106,7 @@ class PublicacionControlador extends Controller
      */
     public function destroy($id)
     {
-          return "ELIMINACION ".$id;
+        $this->publicacion->eliminar($id);
+       return  redirect()->action('CuentaUsuario@index');
     }
 }
