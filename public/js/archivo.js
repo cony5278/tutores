@@ -46,9 +46,10 @@ function Archivo(idFormulario,contenedorArchivo,contenedorHijo) {
 	this.cargarMForm=function(evento,idFormulario,contenedorArchivo,idPublicacion){
         if (evento.value.length == 0) {
             publicacion.contenidoBtnEnvioI(false);
+            publicacion.cambiarFormulario(evento,'PUT',0,idPublicacion)
         }else {
         	publicacion.contenidoBtnEnvioI(true);
-            publicacion.cambiarFormulario(this,'GET',3,idPublicacion);
+            publicacion.cambiarFormulario(evento,'GET',3,idPublicacion);
             this.init(idFormulario, contenedorArchivo);
             var archivos = evento.files;
             var size = archivos.length;

@@ -76,6 +76,9 @@ function Publicacion(){
 	this.cambiarFormulario=function(evento,metodo,opcion,id){
         var padre=$(evento).parent().parent().parent().parent().parent();
         switch(opcion) {
+			case 0:
+                $(padre).find("input[name=_method]").val(metodo);
+				break;
             case 1:
                 $(padre).find("input[name=_method]").val(metodo);
                 $(padre).submit();
