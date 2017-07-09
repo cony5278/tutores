@@ -473,7 +473,7 @@ div.informacion-archivo{
 
 .panel-image ~ input[type=checkbox] {
     position:absolute;
-    top:- 30px;
+    top:-30px;
     z-index: -1;   
 }
 
@@ -534,6 +534,24 @@ div.menu-publicado-item div:active {
     color: black;
     border:1px #00aff0 solid;
 }
+div.adicionar-archivo-menu-publicado{
+    position: relative;
+}
+input.archivos-editar {
+    background-color: #00aff0;
+    position: absolute;
+    top: 0px;
+    width: inherit;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    z-index: 10;
+    filter: alpha(opacity=0); /* internet explorer */
+    -khtml-opacity: 0;      /* khtml, version anterior de safari */
+    -moz-opacity: 0;       /* firefox, mozilla, netscape */
+    opacity: 0;           /* safari, chrome, opera */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /*internet explorer 8 */
+    cursor: pointer;
+}
 /**
 *fin
 */
@@ -546,8 +564,11 @@ div.menu-publicado-item div:active {
    display: none;
 }
 .cancelar-publicacion-form{
-  display: none;
+    display: none;
 }
 .enviar-publicacion-form{
-display: none;
+    display: none;
+}
+.nombre-archivo-publicacion-form{
+    display:none;
 }

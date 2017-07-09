@@ -47,7 +47,7 @@ $(document).ready(function(){
 												true);
 		//fin
 		 archivo =new Archivo("formularioPublicacion","grupo-imagenes");
-		 archivo.inicializar();	
+		 archivo.inicializar();
 		 formulario=new EnvioDatos("formularioPublicacion",
 		 						   "publicaciones",
 		 						   "POST",
@@ -59,9 +59,15 @@ $(document).ready(function(){
 	/**
 	*FIN
 	*/
-		menu =new Menu();
-		publicacion=new Publicacion();
+    /**
+	 * objetos que se utilizan en la publicacon
+     * @type {Publicacion}
+     */
 
-		
+		publicacion=new Publicacion();//tiene la logica para esconder los objetos del dom cuando se va ha editar una publicacion
+    	archivoEditar =new Archivo(null,null);//objeto utilizado para guardar un array de archivos para posterior enviar cuando son muchos formularios
+
+
+
 
 });

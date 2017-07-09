@@ -27,6 +27,7 @@ class CreateUsuariosTable extends Migration
             $table->enum('tipo_telefono',['C','F'])->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+
             $table->rememberToken();
             $table->timestamps();
         });

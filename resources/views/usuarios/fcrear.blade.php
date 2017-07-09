@@ -21,11 +21,11 @@
 	</div>
 	<div class="btn-group" data-toggle="buttons" style="margin-bottom: 5px">	
 	  <label class="btn btn-primary active">
-	  	{!!Form::radio('usuario','1',array('checked'));!!}
+	  	{!!Form::radio('tipo_usuario','1',array('checked'));!!}
 	  	Aprendiz	    
 	  </label>	  
 	    <label class="btn btn-primary">
-	  	{!!Form::radio('usuario','0',array(''));!!}
+	  	{!!Form::radio('tipo_usuario','0',array(''));!!}
 	  	Tutor	    
 	  </label>	
 	 </div>

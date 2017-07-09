@@ -36,3 +36,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 // });
 
 Route::resource('cuenta/publicaciones','PublicacionControlador');
+Route::get('cuenta/publicaciones/destroyFile/{id}','PublicacionControlador@destroyFile');

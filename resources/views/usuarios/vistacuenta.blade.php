@@ -3,6 +3,7 @@
 @section('titulo','sesion de usuario')
 
 @section('css')
+    {!! Html::style('../css/principal/cuenta/usuario/checkbox.css')!!}
 	{!! Html::style('../css/principal/cuenta/usuario/fcuenta.css')!!}
 @endsection
 

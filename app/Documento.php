@@ -13,16 +13,16 @@ class Documento extends Model
     protected $fillable=['id','archivo','tipo_documento','tarea_id','updated_at'];
    
 
-    public function crear(Request $request,$tarea_id){       
+    public function crear(Request $request,$tarea_id){
+
         foreach($request->file('archivos') as $file){
             $archivo=new Archivos($file);
-            $this->create([
-	        	'archivo'=> $archivo->getNombreSinExtension(),
+            $documento=$this->create([
+	        	'archivo'=> $archivo->quitarExtension(),
 	            'tarea_id'=>$tarea_id,
 	            'tipo_documento'=> $archivo->getExtension(),
-                'updated_at'=>$archivo->getCarbon(),
 		    ]);
-            $archivo->guardarArchivo();
+            $archivo->guardarArchivo($documento->updated_at);
         }
     }
     public function extension($id){
@@ -30,6 +30,7 @@ class Documento extends Model
              $archivos=new Archivos(null);
         return $archivos->cadenaExtension($documento->archivo,$documento->tipo_documento,$documento->updated_at);
     }
+
      /**
      * Get the post that owns the comment.
      */

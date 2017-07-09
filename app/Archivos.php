@@ -3,48 +3,15 @@
 namespace App;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
+
 class Archivos 
 {
 
-      private $file;
-      private $nombre;
-      private $extension;
-      private $nombreCarpeta;
-      private $carbon;
-      private $nombreSinExtension;
+      private $file; 
 
       public function __construct($file)
-      {
-          $this->carbon=Carbon::now();
-          if($file!=null){
-            $this->file=$file;
-            $this->nombreSinExtension=basename($this->file->getClientOriginalName(), '.'.$this->file->getClientOriginalExtension());
-            $this->encriptarNombreCarpeta();
-            $this->addExtension();
-          }       
-      }
-  
-      /**
-      *metodo que agrega el nombre para la carpeta que va almacenar el documento
-      */
-      private Function seleccionarExtension($extension){
-      	switch ($extension) {
-      		case 'png':
-      			return 'img';
-      		break;
-      		case 'jpg':
-      			return 'img';
-      		break;
-      		case 'bmp':
-      			return 'img';            
-      		break;            	      		
-      		default:
-          	return $extension;
-      		break;
-      	}
-
-      	return null;
+      {      
+            $this->file=$file;  
       }
 
     /**metodo utilizado para visualizar los archivos en la publicacion
@@ -64,68 +31,57 @@ class Archivos
       private function renderizarExtension($extension,$nombreArchivo,$date){
 
             switch($extension) {
-              case "xls":
-                  return "http://localhost:8000/img/xls.jpg";
+              case EvssaConstantes::XLS:
+                  return EvssaConstantes::RUTA_IMG.EvssaConstantes::XLS.".".EvssaConstantes::JPG;
                   break;
-              case "csv":
-                  return "http://localhost:8000/img/csv.jpg";
+              case EvssaConstantes::CSV:
+                  return EvssaConstantes::RUTA_IMG.EvssaConstantes::CSV.".".EvssaConstantes::JPG;
                   break;
-              case "xlsx":
-                  return "http://localhost:8000/img/xls.jpg";
+              case EvssaConstantes::XLSX:
+                  return EvssaConstantes::RUTA_IMG.EvssaConstantes::XLS.".".EvssaConstantes::JPG;
               break;
-              case "pdf":
-                  return "http://localhost:8000/img/pdf.jpg";
+              case EvssaConstantes::PDF:
+                  return EvssaConstantes::RUTA_IMG.EvssaConstantes::PDF.".".EvssaConstantes::JPG;
               break;
-              case "docx":
-                  return "http://localhost:8000/img/docx.jpg";
+              case EvssaConstantes::DOCX:
+                  return EvssaConstantes::RUTA_IMG.EvssaConstantes::DOCX.".".EvssaConstantes::JPG;
               break;
-              case "doc":
-                  return "http://localhost:8000/img/docx.jpg";
+              case EvssaConstantes::DOC:
+                  return EvssaConstantes::RUTA_IMG.EvssaConstantes::DOCX.".".EvssaConstantes::JPG;
               break;
               default:
-                  $hora = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('H-i-s');
-                return "http://localhost:8000"."/archivos".$this->getRuta($extension).'/'.$hora.$nombreArchivo.'.'.$extension;
+                return EvssaConstantes::RUTA.EvssaConstantes::BARRA.EvssaConstantes::ARCHIVOS.EvssaConstantes::BARRA.$this->nombreRutaArchivos($date,$extension,$nombreArchivo).'.'.$extension;
               break;     
           }
          return null;
       }
 
-    /**
-     * metodo utilizado para encriptar la ruta de toda la carpeta
-     */
-      private function encriptarNombreCarpeta(){
-     
-        $this->nombreCarpeta=Auth::user()->email;
-      }
-
-      private function desEncriptarNombreCarpeta(){
-        $this->nombreCarpeta= decrypt($this->nombreCarpeta);
-      }
       private function getRuta($extension){
 
-          return '/'.Auth::user()->email.'/'.Auth::user()->tipo_usuario.'/'.$this->seleccionarExtension($extension);
+          return '';
       }
 
-      /**
-      *metod que adiciona la extension del archivo
-      */
-      private Function addExtension(){
+      private function nombreRutaArchivos($dateServidor,$extension,$nombre){
+        $nombreAux=Carbon::createFromFormat('Y-m-d H:i:s', $dateServidor)->format('H-i-s')
+          .$nombre;
 
-      	$this->extension=strtolower($this->file->getClientOriginalExtension());
+          return Auth::user()->tipo_usuario.'/'.$extension.'/'.$nombreAux;
       }
-      /**
-      *metodo que le concatena al nombre del archivo la hora minutos y segundos
-      */
-      private function addNombre(){
-          $this->nombre= $this->carbon->format('H-i-s').$this->file->getClientOriginalName();
+
+      private function nombreRutaArchivo($dateServidor){
+         return $this->nombreRutaArchivos(
+          $dateServidor,
+          $this->file->getClientOriginalExtension(),
+          $this->file->getClientOriginalName());
       }
+
      
       /**
       *metodo que guarda el archivo en la ruta especifica
       */
-      public Function guardarArchivo(){
-        $this->addNombre();
-        \Storage::disk('local')->put($this->getRuta($this->extension).'/'.$this->nombre,\File::get($this->file));
+      public function guardarArchivo($dateServidor){
+       
+        \Storage::disk(EvssaConstantes::LOCAL)->put($this->nombreRutaArchivo($dateServidor),\File::get($this->file));
       }
 
     /**metodo que quita la extension del nombre del archivo en la base de datos
@@ -133,79 +89,39 @@ class Archivos
      * @param $extension
      * @return string
      */
-      public Function quitarExtension($nombre,$extension){
-          return basename(nombre, '.'.$extension);
+      public function quitarExtension(){
+          return basename($this->file->getClientOriginalName(), '.'.$this->file->getClientOriginalExtension());
       }
-      public Function copiarArchivo($dateServidor,$nombre,$extension,$cambioNombre){
-          echo $dateServidor.' '.$nombre.' '.$extension.' '.$cambioNombre;
-          $horaServidor=Carbon::createFromFormat('Y-m-d H:i:s', $dateServidor)->format('H-i-s');
+      public function copiarArchivo($dateServidor,$newDate,$nombre,$extension,$cambioNombre){
 
-          $nuevaHora=$this->carbon->format('H-i-s');
+          $rutaCompleta=$this->nombreRutaArchivos($dateServidor,$extension,$nombre).".".$extension;
+          $rutaCompletaNueva=$this->nombreRutaArchivos($newDate,$extension,$cambioNombre).".".$extension;
 
-          $rutaCompleta=$this->getRuta($extension);
 
-          $nombreCompleto='/'.$horaServidor.$nombre.'.'.$extension;
-          $nuevoNombreCompleto='/'.$nuevaHora.$cambioNombre.'.'.$extension;
+          \Storage::copy($rutaCompleta,$rutaCompletaNueva);
 
-          \Storage::copy($rutaCompleta.$nombreCompleto,$rutaCompleta.$nuevoNombreCompleto);
-
-          $this->eliminarArchivoLocal($rutaCompleta,$nombreCompleto);
+          $this->eliminarArchivoLocal($rutaCompleta);
 
       }
-      private Function eliminarArchivoLocal($ruta,$nombre){
-          \Storage::delete($ruta.$nombre);
+
+    /**
+     * metodo utilizado para eliminar un arhivo local
+     * @param $dateServidor
+     * @param $nombre
+     * @param $extension
+     */
+    public function eliminarArchivo($dateServidor,$nombre,$extension){
+        $this->eliminarArchivoLocal($this->nombreRutaArchivos($dateServidor,$extension,$nombre).".".$extension);
+    }
+    /**
+     * metodo utilizado para eliminar un archivo almacenado
+     * @param $ruta
+     */
+      private function eliminarArchivoLocal($ruta){
+          \Storage::delete($ruta);
       }
-    /**
-     * @return mixed
-     */
-    public function getNombreSinExtension()
-    {
-        return $this->nombreSinExtension;
-    }
-
-    /**
-     * @param mixed $nombreSinExtension
-     */
-    public function setNombreSinExtension($nombreSinExtension)
-    {
-        $this->nombreSinExtension = $nombreSinExtension;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-    /**
-     * @return mixed
-     */
-    public function getExtension()
-    {
-        return $this->extension;
-    }
-
-    /**
-     * @param mixed $extension
-     */
-    public function setExtension($extension)
-    {
-        $this->extension = $extension;
-    }
-    /**
-     * @return static
-     */
-    public function getCarbon()
-    {
-        return $this->carbon;
-    }/**
-     * @param static $carbon
-     */
-    public function setCarbon($carbon)
-    {
-        $this->carbon = $carbon;
-    }
-
+      public function getExtension(){
+          return $this->file->getClientOriginalExtension();
+      }
 
 }

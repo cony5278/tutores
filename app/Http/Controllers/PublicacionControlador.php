@@ -9,6 +9,7 @@ use App\Documento;
 use App\Tarea;
 use App\Publicacion;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 class PublicacionControlador extends Controller
 {
     private $publicacion;
@@ -30,7 +31,7 @@ class PublicacionControlador extends Controller
      */
     public function index()
     {
-        \Storage::copy('/juan.rodriguezdia@uptc.edu.co/A/img/01-27-13Hydrangeas.jpg', '/juan.rodriguezdia@uptc.edu.co/A/img/porro.jpg');
+
         return 'paso';
     }
 
@@ -51,14 +52,14 @@ class PublicacionControlador extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(PublicacionCuenta $request)
-    {        
-       
-        $publicacion=$this->publicacion->crear($request);   
-        $tareas=$this->tarea->crear($request,$request['area'],$publicacion->id); 
-        $this->documento->crear($request,$tareas->id); 
+    {
+
+        $publicacion=$this->publicacion->crear($request);
+        $tareas=$this->tarea->crear($request,$request['area'],$publicacion->id);
+        $this->documento->crear($request,$tareas->id);
         $vista=view('usuarios.publicacion.fpublicacion')->with(['publicacion'=>$this->publicacion->publicacionUsuarioUltimo(),'publicar'=>false])->render();
-        return response()->json(array('success' => true, 'html'=>$vista,'token'=>csrf_token(),'hora_final'=>Carbon::now()->format('Y-m-d')),200);       
-         
+        return response()->json(array('success' => true, 'html'=>$vista,'token'=>csrf_token(),'hora_final'=>Carbon::now()->format('Y-m-d')),200);
+
     }
 
     /**
@@ -108,5 +109,10 @@ class PublicacionControlador extends Controller
     {
         $this->publicacion->eliminar($id);
        return  redirect()->action('CuentaUsuario@index');
+    }
+
+    public function destroyFile(Request $request,$id){
+        $this->publicacion->eliminarArchivos($request, $id);
+        return  redirect()->action('CuentaUsuario@index');
     }
 }

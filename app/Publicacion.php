@@ -68,12 +68,19 @@ class Publicacion extends Model
         $publicacion->tareas->first()->titulo_tarea='mucha cuca'; 
         foreach ($publicacion->tareas->first()->documentos as $documento){
             if($documento->archivo!=$request->input(''.$documento->id.'')){
+
                 $archivo=new Archivos(null);
-                $archivo->copiarArchivo($documento->updated_at,
-                                        $documento->archivo,
+                $archivoNombre=$documento->archivo;
+                $dateServidor=$documento->updated_at;
+                $documento->archivo=$request->input(''.$documento->id.'');
+                $documento->save();
+                $archivo->copiarArchivo($dateServidor,
+                                        $documento->updated_at,
+                                        $archivoNombre,
                                         $documento->tipo_documento,
                                         $request->input(''.$documento->id.''));
-                $documento->archivo=$request->input(''.$documento->id.'');
+
+
             }
         } 
         $publicacion->tareas->first()->documentos->first()->save();
@@ -90,6 +97,21 @@ class Publicacion extends Model
         $publicacion->tareas->first()->documentos()->delete();
         $publicacion->tareas->first()->delete();
         $publicacion->delete();
+
+    }
+    /**
+     * metodo que se utiliza para eliminar una publicacion
+     * @param $id
+     */
+    public function eliminarArchivos(Request $request, $id){
+        $publicacion=$this->find($id);
+        foreach ($publicacion->tareas->first()->documentos as $documento){
+           if(!EvssaFunciones::variableVacio($request->input('eliminar-'.$documento->id.''))){
+                $archivo=new Archivos(null);
+                $documento->delete();
+                $archivo->eliminarArchivo($documento->updated_at,$documento->archivo,$documento->tipo_documento);
+           }
+        }
     }
     /**
      * obtener las tareas para las publicaciones

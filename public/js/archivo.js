@@ -4,9 +4,20 @@ function Archivo(idFormulario,contenedorArchivo) {
 	this.map;
 	this.nombre="archivo-";
 	this.cont;
+    /**
+	 * metodo utilizado cuando es solo un formulario
+     */
 	this.inicializar=function(){
 		this.map=new Array();
 		this.cont=-1;
+	}
+    /**
+	 * metodo utilizado cuando son varios formularios
+     */
+	this.init=function(idFormulario,contenedorArchivo){
+        this.setIdFormulario(null);
+        this.setContenedorArchivo(null);
+        this.inicializar();
 	}
 	this.addArchivos=function(i,archivo){
 		this.map[this.nombre+i]=archivo;
@@ -14,6 +25,17 @@ function Archivo(idFormulario,contenedorArchivo) {
 	this.eliminar=function(numero){		
 	
 		this.map[this.nombre+numero]=null;
+	}
+    /**
+	 * sirve cuando son muchos formularios
+     * @param evento
+     */
+	this.cargarMForm=function(evento,idFormulario,contenedorArchivo){
+		this.init(idFormulario,contenedorArchivo);
+        var archivos=evento.files;
+        var size=archivos.length;
+        this.cont++;
+        this.general(archivos,size);
 	}
 	this.cargar=function(evento){
 							    
@@ -72,6 +94,32 @@ function Archivo(idFormulario,contenedorArchivo) {
 			"<div>"+
 			"</li>"
 		);			
+	}
+	this.addHtml=function(){
+		var html= "<div class='col-xs-12 col-md-6'>";
+
+            <div class="panel panel-default">
+
+            <div class="col-sm-12 chequeo-archivos">
+            <div class="checkbox ">
+            <label>
+            <input type="checkbox" name="eliminar-{{$documento->id}}" >
+            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+            </label>
+            </div>
+            </div>
+
+            <div class="panel-image">
+            <img src="{{$documento->extension($documento->id)}}" class="panel-image-preview" />
+            <label for="toggle-1"></label>
+            </div>
+            <div class="panel-footer text-center">
+            <div class="nombre-archivo-publicacion"><a href="#download"><span class="glyphicon glyphicon-download">{{$documento->archivo}}</span></a></div>
+        <div class="nombre-archivo-publicacion-form"><input type="text" name="{{$documento->id}}" class="form-control nombre-archivo-publicacion-form" value="{{$documento->archivo}}"/>
+            </div>
+            </div>
+            </div>
+            </div>
 	}
 	this.informacionOut=function(evento,i){		
 		$(evento).parent().find("#informacion-archivo-"+i).css("display","none");
@@ -139,4 +187,10 @@ function Archivo(idFormulario,contenedorArchivo) {
 	this.setMap=function(map){
 		return this.map=map;
 	}
+    this.setIdFormulario=function(idFormulario){
+		this.idFormulario=idFormulario;
+    }
+    this.setContenedorArchivo=function(contenedorArchivo){
+    	this.contenedorArchivo=contenedorArchivo;
+    }
 }
