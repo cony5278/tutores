@@ -378,16 +378,13 @@ input.archivos{
   position: relative;
 }
 .contenedor-archivos-cerrar{
-  -webkit-border-radius: 20px;
- -moz-border-radius: 20px;
-  border-radius: 20px;
-  background-color: #337ab7; 
+
   width: 20px;
   height: 20px; 
   z-index: 2;
   position: absolute;
-  left: 90%;
-  top: -7%;
+  left: 95%;
+  top: -3%;
   cursor: pointer;
 }
 .contenedor-archivos-cerrar > a{
@@ -564,6 +561,9 @@ input.archivos-editar {
    display: none;
 }
 .cancelar-publicacion-form{
+    display: none;
+}
+.cancelar-publicacion-form-insert{
     display: none;
 }
 .enviar-publicacion-form{

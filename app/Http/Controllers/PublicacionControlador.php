@@ -115,4 +115,8 @@ class PublicacionControlador extends Controller
         $this->publicacion->eliminarArchivos($request, $id);
         return  redirect()->action('CuentaUsuario@index');
     }
+    public function addFilePulication(Request $request,$id){
+        $this->publicacion->addArchivos($request, $id);
+        return  redirect()->action('CuentaUsuario@index');
+    }
 }

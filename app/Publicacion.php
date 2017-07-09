@@ -113,6 +113,10 @@ class Publicacion extends Model
            }
         }
     }
+    public function addArchivos(Request $request, $id){
+        $tarea_id=$this->find($id)->tareas->first()->id;
+        Documento::crear($request,$tarea_id);
+    }
     /**
      * obtener las tareas para las publicaciones
     */

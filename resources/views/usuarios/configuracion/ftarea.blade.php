@@ -16,9 +16,9 @@
 		</div>	
 		
 		<div class="grupo-imagenes-contenedor form-group">
-				<ul class="grupo-imagenes">
-					
-				</ul>
+				<div class="grupo-imagenes">
+
+				</div>
 		</div>
 		<div class="form-group ">
 

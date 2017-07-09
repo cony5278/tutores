@@ -11,8 +11,8 @@
 	 		<span class="glyphicon glyphicon-trash" onclick="publicacion.cambiarFormulario(this,'DELETE',1,{{$publicacion->id}})">Eliminar</span>
 	 	</div>
 	 	<div class="adicionar-archivo-menu-publicado" href="#">
-	 		<span class="glyphicon glyphicon-file" onclick="publicacion.addArchivos(this)"> Añadir archivos</span>
-            <input type="file" class="archivos-editar" width="100" height="100" onchange="archivoEditar.cargarMForm(this,'form-editar-publicacion-{{$publicacion->id}}','grupo-imagenes-editar-'{{$publicacion->id}})" name="archivos[]" multiple />
+	 		<span class="glyphicon glyphicon-file" > Añadir archivos</span>
+            <input type="file" class="archivos-editar" width="100" height="100" onchange="archivoEditar.cargarMForm(this,'form-editar-publicacion-{{$publicacion->id}}','grupo-imagenes-editar-{{$publicacion->id}}',{{$publicacion->id}});" name="archivos[]" multiple />
 
         </div>
 	 	<div class="eliminar-archivo-menu-publicado" href="#">
@@ -39,7 +39,7 @@
 		</div>
 	</div>	
 
-    <div class="grupo-imagenes-editar">
+    <div class="grupo-imagenes-editar-{{$publicacion->id}}">
 	 @foreach ($publicacion->tareas->first()->documentos as $documento)
 
 	 <div class="col-xs-12 col-md-6">
@@ -70,7 +70,9 @@
 	<footer class="container-fluid">
 	</footer>
 	<footer class="footer">
-		 <button type="button" onclick="publicacion.cancelarEditar(this)" class="cancelar-publicacion-form btn btn-default">Cancelar</button>
+        <button type="button" onclick="publicacion.cancelarInsertar(this)" class="cancelar-publicacion-form-insert btn btn-default">Cancelar</button>
+
+        <button type="button" onclick="publicacion.cancelarEditar(this)" class="cancelar-publicacion-form btn btn-default">Cancelar</button>
 
 		<button type="submit"  class="enviar-publicacion-form btn btn-primary">Enviar</button> 
 	</footer>
