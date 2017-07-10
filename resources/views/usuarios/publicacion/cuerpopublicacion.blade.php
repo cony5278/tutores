@@ -12,7 +12,7 @@
 	 	</div>
 	 	<div class="adicionar-archivo-menu-publicado" href="#">
 	 		<span class="glyphicon glyphicon-file" > Añadir archivos</span>
-            <input type="file" class="archivos-editar" width="100" height="100" onchange="archivoEditar.cargarMForm(this,'form-editar-publicacion-{{$publicacion->id}}','grupo-imagenes-editar-{{$publicacion->id}}',{{$publicacion->id}});" name="archivos[]" multiple />
+            <input type="file" class="archivos-editar" width="100" height="100" onchange="archivoEditar.cargarMForm(this,'form-editar-publicacion-{{$publicacion->id}}','grupo-imagenes-editar-{{$publicacion->id}}',{{$publicacion->id}});" name="archivos-editar[]" multiple />
 
         </div>
 	 	<div class="eliminar-archivo-menu-publicado" href="#">

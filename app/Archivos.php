@@ -39,16 +39,16 @@ class Archivos
                   break;
               case EvssaConstantes::XLSX:
                   return EvssaConstantes::RUTA_IMG.EvssaConstantes::XLS.".".EvssaConstantes::JPG;
-              break;
+                  break;
               case EvssaConstantes::PDF:
                   return EvssaConstantes::RUTA_IMG.EvssaConstantes::PDF.".".EvssaConstantes::JPG;
-              break;
+                  break;
               case EvssaConstantes::DOCX:
                   return EvssaConstantes::RUTA_IMG.EvssaConstantes::DOCX.".".EvssaConstantes::JPG;
-              break;
+                  break;
               case EvssaConstantes::DOC:
                   return EvssaConstantes::RUTA_IMG.EvssaConstantes::DOCX.".".EvssaConstantes::JPG;
-              break;
+                  break;
               default:
                 return EvssaConstantes::RUTA.EvssaConstantes::BARRA.EvssaConstantes::ARCHIVOS.EvssaConstantes::BARRA.$this->nombreRutaArchivos($date,$extension,$nombreArchivo).'.'.$extension;
               break;     

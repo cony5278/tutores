@@ -12,7 +12,13 @@ function EnvioDatos(formularioPublicacion,ruta,metodo,archivo,contenedor) {
 	this.metodo=metodo;//metodo de envio POST,PUT ,GET	
 	this.archivo=archivo;
 	this.contenedor=contenedor;
-
+	this.init=function(formularioPublicacion,ruta,metodo,archivo,contenedor){
+        this.formularioPublicacion=formularioPublicacion;
+        this.ruta =ruta;
+        this.metodo=metodo;
+        this.archivo=archivo;
+        this.contenedor=contenedor;
+	}
 	/**
 	*metodo que concatena los serialize de todos los formularios por los que se han pasado
 	*/

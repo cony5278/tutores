@@ -13,7 +13,7 @@ class EvssaConstantes
 {
 
     const RUTA='http://localhost:8000';
-    const RUTA_IMG=RUTA.'/img/';
+    const RUTA_IMG='http://localhost:8000/img/';
     const JPG="jpg";
     const XLS="xls";
     const CSV="csv";

@@ -13,9 +13,9 @@ class Documento extends Model
     protected $fillable=['id','archivo','tipo_documento','tarea_id','updated_at'];
    
 
-    public function crear(Request $request,$tarea_id){
+    public function crear(Request $request,$tarea_id,$requesNameFile){
 
-        foreach($request->file('archivos') as $file){
+        foreach($request->file($requesNameFile) as $file){
             $archivo=new Archivos($file);
             $documento=$this->create([
 	        	'archivo'=> $archivo->quitarExtension(),

@@ -50,12 +50,16 @@ function Archivo(idFormulario,contenedorArchivo,contenedorHijo) {
         }else {
         	publicacion.contenidoBtnEnvioI(true);
             publicacion.cambiarFormulario(evento,'GET',3,idPublicacion);
-            this.init(idFormulario, contenedorArchivo);
+            this.setIdFormulario(idFormulario);
+            this.setContenedorArchivo(contenedorArchivo);
             var archivos = evento.files;
             var size = archivos.length;
             this.cont++;
             this.general(archivos, size);
         }
+	}
+	this.nombreSinExtension=function(nombreArchivo){
+		return nombreArchivo.split('.')[0];
 	}
     /**
 	 * metodo que se llama al cargar los arhcivos con un input
@@ -149,7 +153,7 @@ function Archivo(idFormulario,contenedorArchivo,contenedorHijo) {
             html+="<label for='toggle-1'></label>";
             html+="</div>";
             html+="<div class='panel-footer text-center'>";
-            html+="<div class='nombre-archivo-publicacion'><a href='#download'><span class='glyphicon glyphicon-download'>"+archivo.name+"</span></a></div>";
+            html+="<div class='nombre-archivo-publicacion'><a href='#download'><span class='glyphicon glyphicon-download'>"+this.nombreSinExtension(archivo.name)+"</span></a></div>";
             html+="<div class='nombre-archivo-publicacion-form'><input type='text' class='form-control nombre-archivo-publicacion-form' />";
             html+="</div>";
             html+="</div>";

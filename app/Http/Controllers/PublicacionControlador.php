@@ -56,7 +56,7 @@ class PublicacionControlador extends Controller
 
         $publicacion=$this->publicacion->crear($request);
         $tareas=$this->tarea->crear($request,$request['area'],$publicacion->id);
-        $this->documento->crear($request,$tareas->id);
+        $this->documento->crear($request,$tareas->id,'archivos');
         $vista=view('usuarios.publicacion.fpublicacion')->with(['publicacion'=>$this->publicacion->publicacionUsuarioUltimo(),'publicar'=>false])->render();
         return response()->json(array('success' => true, 'html'=>$vista,'token'=>csrf_token(),'hora_final'=>Carbon::now()->format('Y-m-d')),200);
 
@@ -116,7 +116,7 @@ class PublicacionControlador extends Controller
         return  redirect()->action('CuentaUsuario@index');
     }
     public function addFilePulication(Request $request,$id){
-        $this->publicacion->addArchivos($request, $id);
-        return  redirect()->action('CuentaUsuario@index');
+       $this->publicacion->addArchivos($request, $id);
+       return  redirect()->action('CuentaUsuario@index');
     }
 }

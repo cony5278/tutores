@@ -115,7 +115,11 @@ class Publicacion extends Model
     }
     public function addArchivos(Request $request, $id){
         $tarea_id=$this->find($id)->tareas->first()->id;
-        Documento::crear($request,$tarea_id);
+        $documento=new Documento();
+        $documento->crear($request,$tarea_id,'archivos-editar');
+        //foreach($request->file('archivos-editar') as $file){
+          //  echo $file->getClientOriginalName();
+        //}
     }
     /**
      * obtener las tareas para las publicaciones
