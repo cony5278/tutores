@@ -49,11 +49,10 @@ $(document).ready(function(){
 		 archivo =new Archivo("formularioPublicacion","grupo-imagenes","contenedor-archivos-subida");
 		 archivo.inicializar();
 		 formulario=new EnvioDatos("formularioPublicacion",
-		 						   "publicaciones",
-		 						   "POST",
 		 						   archivo,
-		 						   "contenedor-cuerpo");
-		
+		 						   "contenedor-cuerpo",
+			                       "archivos");
+
 
 
 	/**
@@ -68,7 +67,6 @@ $(document).ready(function(){
     	archivoEditar =new Archivo(null,null,"contenedor-archivos-publicacion-editar");//objeto utilizado para guardar un array de archivos para posterior enviar cuando son muchos formularios
 	    archivoEditar.inicializar();
     	formularioEditar=new EnvioDatos(null,
-										null,
 										null,
 										null,
 										null);

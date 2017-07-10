@@ -74,7 +74,7 @@
 
         <button type="button" onclick="publicacion.cancelarEditar(this)" class="cancelar-publicacion-form btn btn-default">Cancelar</button>
 
-		<button type="submit"  class="enviar-publicacion-form btn btn-primary">Enviar</button> 
+		<button type="button" onclick="formularioEditar.enviarEditar('form-editar-publicacion-'{{$publicacion->id}},ruta,metodo,archivo,contenedor,'archivos-editar');"  class="enviar-publicacion-form btn btn-primary">Enviar</button>
 	</footer>
 	 
 </div>

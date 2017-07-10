@@ -21,7 +21,7 @@
     
         </div>
         <div class="configuracion-usuario-derecha col-xs-12 col-sm-7 col-md-7">
-          {!! Form::open(['route' => 'publicaciones.store', 'id' => 'formularioPublicacion','metthod'=>'POST','files'=> true]) !!}
+          {!! Form::open(['route' => 'publicaciones.store', 'id' => 'formularioPublicacion','method'=>'POST','files'=> true]) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div>
