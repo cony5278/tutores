@@ -46,14 +46,13 @@ $(document).ready(function(){
 												"contenedor-usuario-publicacion",
 												true);
 		//fin
-		 archivo =new Archivo("formularioPublicacion","grupo-imagenes","contenedor-archivos-subida");
+		 archivo =new Archivo();
 		 archivo.inicializar();
-		 formulario=new EnvioDatos("formularioPublicacion",
+		 pasopaso=new PasoPaso();
+		 ajax=new Ajax("formularioPublicacion",
 		 						   archivo,
 		 						   "contenedor-cuerpo",
 			                       "archivos");
-
-
 
 	/**
 	*FIN
@@ -66,10 +65,12 @@ $(document).ready(function(){
 		publicacion=new Publicacion();//tiene la logica para esconder los objetos del dom cuando se va ha editar una publicacion
     	archivoEditar =new Archivo(null,null,"contenedor-archivos-publicacion-editar");//objeto utilizado para guardar un array de archivos para posterior enviar cuando son muchos formularios
 	    archivoEditar.inicializar();
-    	formularioEditar=new EnvioDatos(null,
+    	ajaxEditar=new Ajax(null,
 										null,
 										null,
 										null);
+
+    	ajaxAll=new AjaxAll();
 
 
 

@@ -13,7 +13,7 @@
 
 		</div>						 
 		<div class="form-group">
-			<button type="button"  class="siguiente-tarea btn btn-primary btn-lg btn-block" onclick="formulario.siguiente('siguiente-tarea','publicacion-tareas','publicacion-areas','formularioArea');">Siguiente</button>
+			<button type="button"  class="siguiente-tarea btn btn-primary btn-lg btn-block" onclick="pasopaso.siguiente('siguiente-tarea','publicacion-tareas','publicacion-areas','formularioArea');">Siguiente</button>
 		</div>
 	</div>
 </div>

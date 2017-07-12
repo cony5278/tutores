@@ -40,11 +40,11 @@
 
 		<div class="form-group"> 		
 			<div class="col-xs-6 col-sm-6 col-md-6">
-				<button type="button"  class="atras-area btn btn-primary btn-lg btn-block" onclick="formulario.atras('atras-tarea','publicacion-tareas','publicacion-publicaciones')"">Atras</button>
+				<button type="button"  class="atras-area btn btn-primary btn-lg btn-block" onclick="pasopaso.atras('atras-tarea','publicacion-tareas','publicacion-publicaciones')"">Atras</button>
 			</div>
 					
 			<div class="col-xs-6 col-sm-6 col-md-6">
-				<button type="button"  class="siguiente-publicaciones btn btn-primary btn-lg btn-block" onclick="formulario.enviar()">Siguiente</button>
+				<button type="button"  class="siguiente-publicaciones btn btn-primary btn-lg btn-block" onclick="ajax.enviar()">Siguiente</button>
 			</div>		
 		</div> 
 					

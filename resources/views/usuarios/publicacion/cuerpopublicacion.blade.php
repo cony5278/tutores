@@ -12,7 +12,7 @@
 	 	</div>
 	 	<div class="adicionar-archivo-menu-publicado" href="#">
 	 		<span class="glyphicon glyphicon-file" > Añadir archivos</span>
-            <input type="file" class="archivos-editar" width="100" height="100" onchange="archivoEditar.cargarMForm(this,'form-editar-publicacion-{{$publicacion->id}}','grupo-imagenes-editar-{{$publicacion->id}}',{{$publicacion->id}});" name="archivos-editar[]" multiple />
+            <input type="file" class="archivos-editar" width="100"  height="100" onchange="archivo.cargarMForm(this,'edicion-eliminacion-publicacion-{{$publicacion->id}}');" name="archivos[]" multiple />
 
         </div>
 	 	<div class="eliminar-archivo-menu-publicado" href="#">
@@ -39,7 +39,7 @@
 		</div>
 	</div>	
 
-    <div class="grupo-imagenes-editar-{{$publicacion->id}}">
+    <div class="grupo-imagenes-editar">
 	 @foreach ($publicacion->tareas->first()->documentos as $documento)
 
 	 <div class="col-xs-12 col-md-6">
@@ -74,7 +74,7 @@
 
         <button type="button" onclick="publicacion.cancelarEditar(this)" class="cancelar-publicacion-form btn btn-default">Cancelar</button>
 
-		<button type="button" onclick="formularioEditar.enviarEditar('form-editar-publicacion-'{{$publicacion->id}},ruta,metodo,archivo,contenedor,'archivos-editar');"  class="enviar-publicacion-form btn btn-primary">Enviar</button>
+		<button type="button" onclick="ajaxAll.envioAjax(this);"  class="enviar-publicacion-form btn btn-primary">Enviar</button>
 	</footer>
 	 
 </div>
