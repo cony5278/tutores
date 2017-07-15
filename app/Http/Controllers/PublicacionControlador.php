@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\EvssaTextoMensaje;
 use Illuminate\Http\Request;
 use App\Http\Requests\PublicacionCuenta;
 use App\Area;
@@ -96,7 +97,8 @@ class PublicacionControlador extends Controller
     public function update(Request $request, $id)
     {
         $this->publicacion->actualizar($request,$id);
-       return  redirect()->action('CuentaUsuario@index');
+        return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_EDICION_PUBLICACION_SUCCESS),200);
+
     }
 
     /**
@@ -107,16 +109,22 @@ class PublicacionControlador extends Controller
      */
     public function destroy($id)
     {
+
         $this->publicacion->eliminar($id);
-       return  redirect()->action('CuentaUsuario@index');
+        return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ELIMINACION_PUBLICACION_SUCCESS),200);
     }
+
 
     public function destroyFile(Request $request,$id){
         $this->publicacion->eliminarArchivos($request, $id);
-        return  redirect()->action('CuentaUsuario@index');
+        return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ELIMINACION_ARCHIVO_PUBLICACION_SUCCESS),200);
+
     }
     public function addFilePulication(Request $request,$id){
+
        $this->publicacion->addArchivos($request, $id);
-       return  redirect()->action('CuentaUsuario@index');
+        return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ADD_ARCHIVO_PUBLICACION_SUCCESS),200);
+
+
     }
 }

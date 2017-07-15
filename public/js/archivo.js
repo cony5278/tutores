@@ -9,13 +9,13 @@ function Archivo() {
     this.inicializar = function () {
         this.map = new Array();
         this.cont = -1;
+        $('.contenedor-editar-publicacion').hide();
     }
     /**
      * metodo utilizado cuando son varios formularios
      */
-    this.init = function (formulario,contenedor) {
+    this.init = function (formulario) {
         this.formulario = formulario;
-        this.contenedor=contenedor;
     }
     /**
      * metodo que adiciona un archivo al array de archivos
@@ -23,6 +23,7 @@ function Archivo() {
      * @param archivo
      */
     this.addArchivos = function (i, archivo) {
+        console.log("numero archivos"+i);
         this.map[this.nombre + i] = archivo;
     }
     /**
@@ -30,7 +31,7 @@ function Archivo() {
      * @param numero
      */
     this.eliminar = function (numero) {
-
+        console.log(" matona "+this.nombre + numero);
         this.map[this.nombre + numero] = null;
     }
     /**
@@ -40,9 +41,8 @@ function Archivo() {
     this.cargarMForm = function (evento,formulario) {
 
         if (evento.value.length == 0) {
-            publicacion.contenidoBtnEnvioI(false);
+            console.log("");
         } else {
-            publicacion.contenidoBtnEnvioI(true);
             this.init(formulario);
             var archivos = evento.files;
             var size = archivos.length;
@@ -50,24 +50,7 @@ function Archivo() {
             this.general(archivos, size);
         }
     }
-    /**
-     *
-     * @param nombreArchivo
-     * @returns {*}
-     */
-    this.cargarMForm = function (evento,formulario) {
 
-        if (evento.value.length == 0) {
-            publicacion.contenidoBtnEnvioI(false);
-        } else {
-            publicacion.contenidoBtnEnvioI(true);
-            this.init(formulario);
-            var archivos = evento.files;
-            var size = archivos.length;
-            this.cont++;
-            this.general(archivos, size);
-        }
-    }
     this.nombreSinExtension = function (nombreArchivo) {
         return nombreArchivo.split('.')[0];
     }
@@ -175,16 +158,13 @@ function Archivo() {
     this.cerrarArchivo=function(evento){
         var contenedor=$(evento);
         contenedor.parent().css("display", "none" );
+
         var id=contenedor.attr('id').split("-");
-        archivo.eliminar(id[3]);
+        console.log("eliminar "+id[3]);
+
+        this.eliminar(id[3]);
     }
-    /**
-     *
-     */
-    this.eliminarTodoArchivo = function () {
-        this.init(null, null);
-        $(".grupo-imagenes-editar").hide();
-    }
+
     /**
      * metodo que deacuerdo al tipo de archivo selecciona una imagen de la base de datos
      * @param extension

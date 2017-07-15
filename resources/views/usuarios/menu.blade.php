@@ -25,8 +25,8 @@
            <label class="lbuscar">buscar publicación</label>
     </div>
     <ul class="menu-lateral">
-        <li><a class="img-config" onclick="contenedorConfiguracion.visibleOcultarContenedores();">config</a></li>
-        <li><a onclick="contenedorPublicacion.visibleOcultarContenedores();">publi</a></li>
+        <li><a class="img-config" onclick="contenedorConfiguracion.visibleOcultarContenedores();">Crear Publicacion</a></li>
+        <li><a onclick="contenedorPublicacion.visibleOcultarContenedores();archivo.inicializar()">Publicaciones</a></li>
         <li><a onclick="contenedorDocumento.visibleOcultarContenedores();">doc</a></li>
         <li><a onclick="contenedorNotificaion.visibleOcultarContenedores();">Notifi</a></li>                 
     </ul>

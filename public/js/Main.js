@@ -63,9 +63,7 @@ $(document).ready(function(){
      */
 
 		publicacion=new Publicacion();//tiene la logica para esconder los objetos del dom cuando se va ha editar una publicacion
-    	archivoEditar =new Archivo(null,null,"contenedor-archivos-publicacion-editar");//objeto utilizado para guardar un array de archivos para posterior enviar cuando son muchos formularios
-	    archivoEditar.inicializar();
-    	ajaxEditar=new Ajax(null,
+   		ajaxEditar=new Ajax(null,
 										null,
 										null,
 										null);

@@ -162,54 +162,127 @@ function Ajax(formularioPublicacion,archivo,contenedor,fileInputName){
  * @constructor
  */
 function AjaxAll() {
-    this.addDatos = function (formulario, fileInputName) {
+    /***
+     * datos de envio en formato json para los datos o texto
+     * @param formulario
+     * @returns {*|jQuery}
+     */
+    this.addDatos = function (formulario) {
+        var jsonAll=$(formulario).serializeArray();
+
+        $.each(jsonAll, function (i, json) {
+            jsonAll.push({name: json.name, value:json.value});
+        });
+        return jsonAll;
+    }
+    /***
+     * datos de envio con form data para los archivos
+     * @param formulario
+     * @param fileInputName
+     * @returns {*}
+     */
+    this.addDatosArchivos=function(formulario, fileInputName){
         var formData = new FormData();
 
-        $.each($(formulario).serializeArray(), function (i, json) {
+        $.each($(formulario).serializeArray(), function(i, json) {
             formData.append(json.name, json.value);
         });
-        console.log(archivoNuevo);
-        if (archivoNuevo.getMap() != null) {
-            for (var j in archivoNuevo.getMap()) {
-                formData.append(fileInputName + "[]", archivoNuevo.getMap()[j]);
-            }
+        for (var j in archivo.getMap()) {
+            formData.append(fileInputName+"[]",archivo.getMap()[j]);
         }
         return formData;
     }
+    this.tamano=function(){
+        var size=0;
+        for (var j in archivo.getMap()) {
+            size++;
+        }
+        return size;
+    }
     /**
-     *envio atravez de ajax de los datos almacenados al controlador
+     *funcion de envio general
      */
     this.envioAjax = function (evento) {
-        var formulario = $(evento.form);
+        var formulario = $(evento).parents("form:first");
+        if(this.tamano()>0){
+            this.envioArchivos(formulario);
+        }else{
+            this.envioDatos(formulario);
+        }
+    }
+    /**
+     * funcion que envia solamente los datos de un formualario sin los archivos
+     * @param formulario
+     */
+    this.envioDatos=function(formulario){
         var objeto=this;
+        var dato=this.addDatos(formulario);
         $.ajax({
             headers: {'X-CSRF-TOKEN': $(formulario).find("input[name=_token]").val()},
             url: $(formulario).attr("action"),
             method: $(formulario).attr("method"),
-            data: this.addDatos(formulario, "archivos"),
-            contentType: false,
-            processData: false,
+            data: dato,
             dataType: 'json',
             success: function (data) {
                 var notificacion = new Notificacion();
                 notificacion.crearContenedor();
-                notificacion.crearNotificacion("Su publicación se ha procesado exitósamente", "SUCCESS");
-                objeto.volverVaciosCamposFormulario(formulario);
+                notificacion.crearNotificacion(data.message, "SUCCESS");
+
+                objeto.renewToken(data.token);
             },
             error: function (data) {
                 objeto.alerta(data.responseJSON);
             }
         });
     }
+    /**
+     * funcion que envia los archivos al controlador
+     * @param formulario
+     */
+    this.envioArchivos=function(formulario){
+        var objeto=this;
+        var dato=this.addDatosArchivos(formulario, "archivos");
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $(formulario).find("input[name=_token]").val()},
+            url: $(formulario).attr("action"),
+            method: $(formulario).attr("method"),
+            data: dato,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function (data) {
+                var notificacion = new Notificacion();
+                notificacion.crearContenedor();
+                notificacion.crearNotificacion(data.message, "SUCCESS");
 
+                objeto.renewToken(data.token);
+            },
+            error: function (data) {
+                objeto.alerta(data.responseJSON);
+            }
+        });
+    }
+    /**
+     * renueva el token para envio de formulario
+     * @param value
+     */
+    this.renewToken=function(value){
+        $('input[name=_token]').val(value);
+    }
+    /**
+     * fncion que vuelve vacios los campos del formulario
+     * @param formulario
+     */
     this.volverVaciosCamposFormulario = function (formulario) {
         $.each($(formulario).serializeArray(), function (i, json) {
             $('input[name=' + json.name + ']').val("");
         });
-        archivoNuevo.inicializar();
+        archivo.inicializar();
     }
-
-
+    /**
+     * notificacion de alerta
+     * @param errors
+     */
     this.alerta = function (errors) {
         var notificacion = new Notificacion();
         notificacion.crearContenedor();

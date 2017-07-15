@@ -5,18 +5,18 @@
 	  <div class="menu-publicado-item ">  	
 
 	 	<div class="editar-archivo-menu-publicado" href="#">
-	 		<span class="glyphicon glyphicon-edit" onclick="publicacion.editar(this)" > Editar</span>
+	 		<span class="glyphicon glyphicon-edit" onclick="publicacion.cambiarFormulario(this,'PUT',{{$publicacion->id}},'',1)" > Editar</span>
 	 	</div>
 	 	<div class="eliminar-archivo-menu-publicado" href="#">
-	 		<span class="glyphicon glyphicon-trash" onclick="publicacion.cambiarFormulario(this,'DELETE',1,{{$publicacion->id}})">Eliminar</span>
+	 		<span class="glyphicon glyphicon-trash" onclick="publicacion.cambiarFormulario(this,'DELETE',{{$publicacion->id}},'',3);ajaxAll.envioAjax(this);">Eliminar Publicacion</span>
 	 	</div>
 	 	<div class="adicionar-archivo-menu-publicado" href="#">
 	 		<span class="glyphicon glyphicon-file" > Añadir archivos</span>
-            <input type="file" class="archivos-editar" width="100"  height="100" onchange="archivo.cargarMForm(this,'edicion-eliminacion-publicacion-{{$publicacion->id}}');" name="archivos[]" multiple />
+            <input type="file" class="archivos-editar" width="100"  height="100" onchange="archivo.cargarMForm(this,'edicion-eliminacion-publicacion-{{$publicacion->id}}');publicacion.cambiarFormulario(this,'GET',{{$publicacion->id}},'addFilePulication',2)" name="archivos[]" multiple />
 
         </div>
 	 	<div class="eliminar-archivo-menu-publicado" href="#">
-	 		<span class="glyphicon glyphicon-trash" onclick="publicacion.cambiarFormulario(this,'GET',2,{{$publicacion->id}})">Eliminar archivos</span>
+	 		<span class="glyphicon glyphicon-trash" onclick="publicacion.cambiarFormulario(this,'GET',{{$publicacion->id}},'destroyFile',0)">Eliminar archivos</span>
 
         </div>
 		
@@ -37,9 +37,10 @@
 			<textarea name="descripcion" class="form-control" id="comment">{{$publicacion->descripcion}}			
 			</textarea>
 		</div>
-	</div>	
+	</div>
 
-    <div class="grupo-imagenes-editar">
+    <div class="grupo-imagenes" >
+
 	 @foreach ($publicacion->tareas->first()->documentos as $documento)
 
 	 <div class="col-xs-12 col-md-6">
@@ -70,9 +71,8 @@
 	<footer class="container-fluid">
 	</footer>
 	<footer class="footer">
-        <button type="button" onclick="publicacion.cancelarInsertar(this)" class="cancelar-publicacion-form-insert btn btn-default">Cancelar</button>
 
-        <button type="button" onclick="publicacion.cancelarEditar(this)" class="cancelar-publicacion-form btn btn-default">Cancelar</button>
+        <button type="button" onclick="publicacion.cancelarEditar(this);archivo.inicializar();" class="cancelar-publicacion-form btn btn-default">Cancelar</button>
 
 		<button type="button" onclick="ajaxAll.envioAjax(this);"  class="enviar-publicacion-form btn btn-primary">Enviar</button>
 	</footer>

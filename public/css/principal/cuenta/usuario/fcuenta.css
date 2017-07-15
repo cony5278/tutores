@@ -350,7 +350,7 @@ input.archivos{
 *carga de imagenes
 */
 
-.grupo-imagenes {  padding-top: 10px; overflow: hidden;}
+.grupo-imagenes {  padding-top: 10px; }
 .grupo-imagenes li{
   width:154px;
   height:154px;
