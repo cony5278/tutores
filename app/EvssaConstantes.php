@@ -25,5 +25,6 @@ class EvssaConstantes
     const BARRA="/";
     const ARCHIVOS="archivos";
     const LOCAL="local";
+    const IDINICIAL='000000000000001';
 
 }

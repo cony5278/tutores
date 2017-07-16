@@ -14,7 +14,7 @@ class CreateNoticiaPublicadasTable extends Migration
     public function up()
     {
         Schema::create('noticia_publicadas', function (Blueprint $table) {
-            $table->integer('publicacion_id')->unsigned()->nullable();
+            $table->string('publicacion_id',15)->nullable();
             $table->foreign('publicacion_id')->references('id')->on('publicaciones');
             $table->integer('usuario_tutor_id')->unsigned()->nullable();
             $table->foreign('usuario_tutor_id')->references('id')->on('users');

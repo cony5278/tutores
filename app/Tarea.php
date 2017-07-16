@@ -14,7 +14,7 @@ class Tarea extends Model
         return  $this->create([         
 	            'titulo_tarea'=>$request['titulo_tarea'],
 	            'area_id'=>$area_id,
-	            'publicacion_id'=>$publicacion_id,
+	            'publicacion_id'=>EvssaFunciones::cerosIzquierda($publicacion_id),
 	            'estado_entrega'=> 'ACEPTADO',         
             ]);
     }

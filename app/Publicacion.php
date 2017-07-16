@@ -27,17 +27,23 @@ class Publicacion extends Model
     	}
     	return null;
     }
+    public function concecutivo(){
+        return EvssaFunciones::objetoVacio($this->ultimoId())
+            ?EvssaConstantes::IDINICIAL:EvssaFunciones::cerosIzquierda(EvssaFunciones::convertirIdEntero($this->ultimoId()->id)+1);
+    }
     public function crear(Request $request){
-    	
-            return $this->create([         
+
+            return  $this->create([
+                'id'=>$this->concecutivo(),
 	            'titulo'=>$request['titulo'],
 	            'descripcion'=>$request['descripcion'],
 	            'fecha_inicial'=>Carbon::now(),
 	            'fecha_final'=>$request['fecha_final'],
 	            'valor'=>$request['valor'],
                 'id_usuario'=>Auth::user()->id,
-	            'estado'=>$this->seleccionarEstado($request)  ,    
+	            'estado'=>$this->seleccionarEstado($request),
             ]);
+
     }
 
     /**
@@ -55,6 +61,12 @@ class Publicacion extends Model
      public function publicacionUsuarioUltimo(){
          return $this->where('id_usuario',Auth::user()->id)->orderBy('id','desc')->take(1)->first();
     }
+    /**
+     * ultimo registro de la publicacion
+     */
+    public function ultimoId(){
+        return $this->orderBy('created_at', 'desc')->first();
+    }
 
     /**
      * metodo que actualiza la informacion de una publicacion
@@ -62,7 +74,7 @@ class Publicacion extends Model
      * @param $id
      */
     public function actualizar(Request $request, $id){
-        $publicacion=$this->find($id);
+        $publicacion=$this->find(''.EvssaFunciones::cerosIzquierda($id).'');
         $publicacion->titulo=$request->titulo;
         $publicacion->descripcion=$request->descripcion;
         $publicacion->tareas->first()->titulo_tarea='mucha cuca'; 
@@ -93,7 +105,8 @@ class Publicacion extends Model
      * @param $id
      */
     public function eliminar($id){
-        $publicacion=$this->find($id);
+        $publicacion=$this->find(''.EvssaFunciones::cerosIzquierda($id).'');
+
         $publicacion->tareas->first()->documentos()->delete();
         $publicacion->tareas->first()->delete();
         $publicacion->delete();
@@ -104,7 +117,7 @@ class Publicacion extends Model
      * @param $id
      */
     public function eliminarArchivos(Request $request, $id){
-        $publicacion=$this->find($id);
+        $publicacion=$this->find(''.EvssaFunciones::cerosIzquierda($id).'');
         foreach ($publicacion->tareas->first()->documentos as $documento){
            if(!EvssaFunciones::variableVacio($request->input('eliminar-'.$documento->id.''))){
                 $archivo=new Archivos(null);
@@ -114,7 +127,7 @@ class Publicacion extends Model
         }
     }
     public function addArchivos(Request $request, $id){
-        $tarea_id=$this->find($id)->tareas->first()->id;
+        $tarea_id=$this->find(''.EvssaFunciones::cerosIzquierda($id).'')->tareas->first()->id;
         $documento=new Documento();
         $documento->crear($request,$tarea_id,'archivos');
 

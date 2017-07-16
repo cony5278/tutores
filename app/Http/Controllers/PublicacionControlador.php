@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\EvssaConstantes;
+use App\EvssaFunciones;
 use App\EvssaTextoMensaje;
 use Illuminate\Http\Request;
 use App\Http\Requests\PublicacionCuenta;
@@ -16,6 +18,7 @@ class PublicacionControlador extends Controller
     private $publicacion;
     private $tarea;    
     private $documento;
+
      public function __construct()
     {   
 
@@ -35,7 +38,13 @@ class PublicacionControlador extends Controller
 
         return 'paso';
     }
+    public function prueba(){
+        //echo 'prueba ceros '.EvssaFunciones::cerosIzquierda(2016465464);
+        //echo 'prueba entero'.EvssaFunciones::convertirIdEntero();
+        echo  EvssaFunciones::objetoVacio($this->publicacion->ultimoId())
+            ?EvssaConstantes::IDINICIAL:EvssaFunciones::cerosIzquierda();
 
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -55,8 +64,9 @@ class PublicacionControlador extends Controller
     public function store(PublicacionCuenta $request)
     {
 
-        $publicacion=$this->publicacion->crear($request);
-        $tareas=$this->tarea->crear($request,$request['area'],$publicacion->id);
+        $this->publicacion->crear($request);
+        $publicacion_id=$this->publicacion->ultimoId()->id;
+        $tareas=$this->tarea->crear($request,$request['area'],$publicacion_id);
         $this->documento->crear($request,$tareas->id,'archivos');
         $vista=view('usuarios.publicacion.fpublicacion')->with(['publicacion'=>$this->publicacion->publicacionUsuarioUltimo(),'publicar'=>false])->render();
         return response()->json(array('success' => true, 'html'=>$vista,'token'=>csrf_token(),'hora_final'=>Carbon::now()->format('Y-m-d')),200);
@@ -111,7 +121,7 @@ class PublicacionControlador extends Controller
     {
 
         $this->publicacion->eliminar($id);
-        return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ELIMINACION_PUBLICACION_SUCCESS),200);
+        //return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ELIMINACION_PUBLICACION_SUCCESS),200);
     }
 
 
