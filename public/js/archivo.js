@@ -9,7 +9,7 @@ function Archivo() {
     this.inicializar = function () {
         this.map = new Array();
         this.cont = -1;
-        $('.contenedor-editar-publicacion').hide();
+
     }
     /**
      * metodo utilizado cuando son varios formularios

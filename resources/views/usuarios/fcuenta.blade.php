@@ -55,7 +55,7 @@
     <div class="contenedor-cabeza col-xs-12 col-sm-9 col-md-9">
           izquierda
       </div>
-      <div  class="contenedor-cuerpo scroll-1 col-xs-12 col-sm-8 col-md-9">
+      <div  onscroll="ajaxPaginado.scrollPaginado(this);" class="contenedor-cuerpo scroll-1 col-xs-12 col-sm-8 col-md-9">
           <div class="force-overflow">        
 
                @include('usuarios/publicacion/fpublicacion')                    

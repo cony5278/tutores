@@ -27,14 +27,11 @@ class Publicacion extends Model
     	}
     	return null;
     }
-    public function concecutivo(){
-        return EvssaFunciones::objetoVacio($this->ultimoId())
-            ?EvssaConstantes::IDINICIAL:EvssaFunciones::cerosIzquierda(EvssaFunciones::convertirIdEntero($this->ultimoId()->id)+1);
-    }
+
     public function crear(Request $request){
 
             return  $this->create([
-                'id'=>$this->concecutivo(),
+                'id'=>EvssaFunciones::concecutivo($this),
 	            'titulo'=>$request['titulo'],
 	            'descripcion'=>$request['descripcion'],
 	            'fecha_inicial'=>Carbon::now(),
@@ -61,13 +58,9 @@ class Publicacion extends Model
      public function publicacionUsuarioUltimo(){
          return $this->where('id_usuario',Auth::user()->id)->orderBy('id','desc')->take(1)->first();
     }
-    /**
-     * ultimo registro de la publicacion
-     */
-    public function ultimoId(){
-        return $this->orderBy('created_at', 'desc')->first();
+    public function paginar($inicial,$final){
+         return $this->offset($inicial)->limit($final)->get();
     }
-
     /**
      * metodo que actualiza la informacion de una publicacion
      * @param Request $request

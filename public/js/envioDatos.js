@@ -148,7 +148,7 @@ function Ajax(formularioPublicacion,archivo,contenedor,fileInputName){
     this.borrarArchivos=function(){
     	this.archivo.setMap(null);//eliminar el map de archivos
     	this.archivo.inicializar();
-    	$(".grupo-imagenes").empty();
+        $("#"+this.formularioPublicacion).find(".grupo-imagenes").empty();
     }
     this.renewToken=function(value){
 		$('input[name=_token]').val(value);
@@ -291,7 +291,66 @@ function AjaxAll() {
         });
     }
 }
+/**
+ * paginado
+ * @constructor
+ */
+function AjaxPaginado(){
+    this.inicial=0;
+    this.final=1;
+    this.enviar=function(formulario) {
 
+        console.log(formulario);
+        var objeto=this;
+        this.inicial=this.final;
+        this.final=this.final+9;
+        publicacion.cambiarFormularioPaginado(formulario,'pagePublication',this.inicial,this.final,'GET');
+        var json= {"inicial":this.inicial, "final":this.final};
+            $.ajax({
+            headers: {'X-CSRF-TOKEN': $(formulario).find("input[name=_token]").val()},
+            url: $(formulario).attr("action"),
+            method:'GET',
+            data: json,
+            dataType: 'json',
+            success: function (data) {
+                var notificacion = new Notificacion();
+                notificacion.crearContenedor();
+                notificacion.crearNotificacion(data.message, "SUCCESS");
+                objeto.renewToken(data.token);
+            },
+            error: function (data) {
+
+            }
+        });
+    }
+    /**
+     * renueva el token para envio de formulario
+     * @param value
+     */
+    this.renewToken=function(value){
+        $('input[name=_token]').val(value);
+    }
+
+    /**
+     * f
+     * @param evento
+     */
+    this.scrollPaginado=function(evento){
+        if($(evento).find(".paginado-publicacion-"+this.final).length!=0) {
+            var altura = $(evento).find(".paginado-publicacion-" + this.final).offset();
+            altura = altura.top;
+            if (altura <= 0) {
+                this.enviar($(evento).find(".paginado-publicacion-"+this.final).parents("form:first"));
+            }
+        }
+    }
+    this.setFinal=function(final){
+        this.final=final;
+    }
+    this.getFinal=function(){
+        return this.final;
+    }
+}
 
 
 

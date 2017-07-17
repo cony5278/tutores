@@ -23,4 +23,11 @@ class EvssaFunciones
     public static function objetoVacio($objeto){
      return  $objeto==null;
     }
+    public static  function concecutivo($tabla){
+        return EvssaFunciones::objetoVacio(EvssaFunciones::ultimoRegistro($tabla))
+            ?EvssaConstantes::IDINICIAL:EvssaFunciones::cerosIzquierda(EvssaFunciones::convertirIdEntero(EvssaFunciones::ultimoRegistro($tabla)->id)+1);
+    }
+    public static function ultimoRegistro($tabla){
+          return $tabla->orderBy('created_at', 'desc')->first();
+    }
 }

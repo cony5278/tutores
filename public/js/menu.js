@@ -123,6 +123,11 @@ function Publicacion(){
         }
 
 	}
+    this.cambiarFormularioPaginado=function(formulario,ruta,inicial,final,metodo){
+        ruta=ruta==''?'':'/'+ruta;
+        $(formulario).attr('action',"publicaciones"+ruta+"/"+inicial+"/"+final);
+        $(formulario).find("input[name=_method]").val(metodo);
+    }
 	this.cambiarUrl=function(padre,id,metodo,ruta){
 		ruta=ruta==''?'':'/'+ruta;
         $(padre).attr('action',"publicaciones"+ruta+"/"+id);

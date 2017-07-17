@@ -1,4 +1,4 @@
-<div class="formulario-publicacion-todo" >
+<div class="formulario-publicacion-todo paginado-publicacion-{{$publicacion->id}}" >
 
 	<div class="archivo-menu-publicado btn-group">
 	  <a onclick="publicacion.desplegarItem(this);"><span class="glyphicon glyphicon-menu-down"></span></a>
@@ -39,7 +39,7 @@
 		</div>
 	</div>
 
-    <div class="grupo-imagenes" >
+    <div class="grupo-imagenes " >
 
 	 @foreach ($publicacion->tareas->first()->documentos as $documento)
 
@@ -68,13 +68,14 @@
     </div>
    	@endforeach				
     </div>
-	<footer class="container-fluid">
+	<footer class="container-fluid  ">
 	</footer>
-	<footer class="footer">
 
+	<footer class="footer " >
         <button type="button" onclick="publicacion.cancelarEditar(this);archivo.inicializar();" class="cancelar-publicacion-form btn btn-default">Cancelar</button>
 
 		<button type="button" onclick="ajaxAll.envioAjax(this);"  class="enviar-publicacion-form btn btn-primary">Enviar</button>
 	</footer>
-	 
+
+
 </div>

@@ -29,7 +29,7 @@ function Contenedor(claseVisible,json,animacion) {
   */
   this.visibleOcultarContenedores=function(){ 
 
-    for(i in this.json){
+    for(var i in this.json){
       if(i!=1){      
         this.visibleContenedorClase(this.json[i],false); 
       }else{     

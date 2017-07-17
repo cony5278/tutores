@@ -73,3 +73,13 @@ $(document).ready(function(){
 
 
 });
+ajaxPaginado=new AjaxPaginado();
+//$(window).scroll(function(){
+//	var altura=$('.paginado-publicacion-'+ajaxPaginado.getFinal()).height();
+  //  console.log($(window).scrollTop() + $(window).height());
+    //if($(window).scrollTop() + $(window).height() == altura) {
+      //  alert("Has llegado al final de la página");
+    //}
+
+//});
+

@@ -39,11 +39,7 @@ class PublicacionControlador extends Controller
         return 'paso';
     }
     public function prueba(){
-        //echo 'prueba ceros '.EvssaFunciones::cerosIzquierda(2016465464);
-        //echo 'prueba entero'.EvssaFunciones::convertirIdEntero();
-        echo  EvssaFunciones::objetoVacio($this->publicacion->ultimoId())
-            ?EvssaConstantes::IDINICIAL:EvssaFunciones::cerosIzquierda();
-
+        echo  $this->publicacion->paginar(1,2);
     }
     /**
      * Show the form for creating a new resource.
@@ -65,7 +61,7 @@ class PublicacionControlador extends Controller
     {
 
         $this->publicacion->crear($request);
-        $publicacion_id=$this->publicacion->ultimoId()->id;
+        $publicacion_id=EvssaFunciones::ultimoRegistro($this->publicacion)->id;
         $tareas=$this->tarea->crear($request,$request['area'],$publicacion_id);
         $this->documento->crear($request,$tareas->id,'archivos');
         $vista=view('usuarios.publicacion.fpublicacion')->with(['publicacion'=>$this->publicacion->publicacionUsuarioUltimo(),'publicar'=>false])->render();
@@ -121,7 +117,7 @@ class PublicacionControlador extends Controller
     {
 
         $this->publicacion->eliminar($id);
-        //return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ELIMINACION_PUBLICACION_SUCCESS),200);
+        return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ELIMINACION_PUBLICACION_SUCCESS),200);
     }
 
 
@@ -136,5 +132,10 @@ class PublicacionControlador extends Controller
         return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ADD_ARCHIVO_PUBLICACION_SUCCESS),200);
 
 
+    }
+    public function pagePublication($inicial,$final){
+        echo 'entro '.$inicial.' '.$final;
+        //echo $publicaciones=$this->publicacion->paginar($inicial,$final);
+        //return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ADD_ARCHIVO_PUBLICACION_SUCCESS,'html'=>'pendiente'),200);
     }
 }
