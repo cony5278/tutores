@@ -14,7 +14,7 @@ class CreateUsuariosTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('id',15)->primary();
             $table->string('name',30);          
             $table->string('nombre1',30)->nullable();
             $table->string('nombre2',30)->nullable();
@@ -25,9 +25,6 @@ class CreateUsuariosTable extends Migration
             $table->enum('tipo_usuario',['T','A','S'])->default('A');
             $table->string('telefono',50)->nullable();
             $table->enum('tipo_telefono',['C','F'])->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-
             $table->rememberToken();
             $table->timestamps();
         });

@@ -38,5 +38,9 @@ class User extends Authenticatable
         $paginado->crear($usuario->id);
         return $usuario;
     }
+
+    public function paginados(){
+        return $this->hasOne('App\Paginado');
+    }
  
 }

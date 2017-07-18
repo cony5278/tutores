@@ -19,7 +19,6 @@ class CreateDocumentosTable extends Migration
             $table->enum('tipo_documento',['xls','csv','pdf','docx','doc','jpg','png','bmp','xlsx']);
             $table->integer('tarea_id')->unsigned()->nullable();
             $table->foreign('tarea_id')->references('id')->on('tareas');
-           
             $table->timestamps();
         });
     }
