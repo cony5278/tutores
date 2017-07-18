@@ -134,8 +134,9 @@ class PublicacionControlador extends Controller
 
     }
     public function pagePublication($inicial,$final){
-        echo 'entro '.$inicial.' '.$final;
-        //echo $publicaciones=$this->publicacion->paginar($inicial,$final);
-        //return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ADD_ARCHIVO_PUBLICACION_SUCCESS,'html'=>'pendiente'),200);
+
+        $publicaciones=$this->publicacion->paginar($inicial,$final);
+        $vista=view('usuarios.publicacion.fpublicacion')->with(['publicaciones'=>$publicaciones,'publicar'=>true])->render();
+        return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ADD_ARCHIVO_PUBLICACION_SUCCESS,'html'=>$vista),200);
     }
 }

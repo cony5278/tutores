@@ -317,9 +317,10 @@ function AjaxPaginado(){
                 notificacion.crearContenedor();
                 notificacion.crearNotificacion(data.message, "SUCCESS");
                 objeto.renewToken(data.token);
+                console.log(data.html);
             },
             error: function (data) {
-
+                console.log("error");
             }
         });
     }

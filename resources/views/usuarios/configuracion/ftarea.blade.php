@@ -15,12 +15,12 @@
 		 	
 		</div>	
 		
-		<div class="grupo-imagenes-contenedor form-group">
+		<div class="col-xs-12 col-sm-12 col-md-12 form-group">
 				<div class="grupo-imagenes">
 
 				</div>
 		</div>
-		<div class="form-group ">
+		<div class="form-group">
 
 			<div class="col-xs-6 col-sm-6 col-md-6">
 				<button type="button"  class="atras-area btn btn-primary btn-lg btn-block" onclick="pasopaso.atras('atras-area','publicacion-areas','publicacion-tareas')">Atras</button>

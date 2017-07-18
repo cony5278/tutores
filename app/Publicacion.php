@@ -48,7 +48,7 @@ class Publicacion extends Model
      * @return mixed
      */
     public function publicacionUsuarioAll(){
-         return $this->where('id_usuario',Auth::user()->id)->orderBy('id','desc')->get();
+         return $this->paginar(0,9);
     }
 
     /**
@@ -59,7 +59,7 @@ class Publicacion extends Model
          return $this->where('id_usuario',Auth::user()->id)->orderBy('id','desc')->take(1)->first();
     }
     public function paginar($inicial,$final){
-         return $this->offset($inicial)->limit($final)->get();
+        return $this->where('id_usuario',Auth::user()->id)->orderBy('id','desc')->offset($inicial)->limit($final)->get();
     }
     /**
      * metodo que actualiza la informacion de una publicacion

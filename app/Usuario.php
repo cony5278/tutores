@@ -28,11 +28,13 @@ class Usuario extends Authenticatable
     ];
     public function crear(UsuarioRequest $request){
 
-            $this->create([
+        $usuario= $this->create([
             'pseudonimo'=>$request['pseudonimo'],
             'correo'=>$request['correo'],
             'contrasena'=> bcrypt($request['contrasena']),
             'tipo_usuario'=>$request['usuario']=='1'?'A':'T',
             ]);
+        $paginado=new Paginado();
+        $paginado->crear($usuario->id);
     }
 }

@@ -27,6 +27,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
+    public function crear(array $data){
+        $usuario= $this->create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'tipo_usuario'=>$data['tipo_usuario']=='1'?'A':'T',
+        ]);
+        $paginado=new Paginado();
+        $paginado->crear($usuario->id);
+        return $usuario;
+    }
  
 }
