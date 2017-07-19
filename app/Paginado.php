@@ -8,17 +8,20 @@ class Paginado extends Model
 {
     //
     protected $table='paginados';
-    protected $fillable=['id','inicial','final','id_usuario'];
+    protected $fillable=['id','inicial','final','id_usuario','email','tipo_usuario'];
 
     /**
      * mtodo para crear un registro el la tabla
      * @param $id_usuario
      * @return mixed
      */
-    public function crear ($id_usuario){
+    public function crear ($usuario){
+
         return  $this->create([
             'id'=>EvssaFunciones::concecutivo($this),
-            'id_usuario'=>$id_usuario,
+            'id_usuario'=>EvssaFunciones::cerosIzquierda($usuario->id),
+            'email'=>$usuario->email,
+            'tipo_usuario'=>$usuario->tipo_usuario,
         ]);
     }
 

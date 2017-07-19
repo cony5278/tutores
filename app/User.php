@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'id','email','tipo_usuario','name', 'password'
     ];
 
     /**
@@ -28,15 +28,18 @@ class User extends Authenticatable
     ];
 
     public function crear(array $data){
-        $usuario= $this->create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'tipo_usuario'=>$data['tipo_usuario']=='1'?'A':'T',
-        ]);
-        $paginado=new Paginado();
-        $paginado->crear($usuario->id);
-        return $usuario;
+
+        $this->id=EvssaFunciones::concecutivo($this);
+        $this->name= $data['name'];
+        $this->email= $data['email'];
+        $this->password= bcrypt($data['password']);
+        $this->tipo_usuario=$data['tipo_usuario']=='1'?'A':'T';
+        $id=$this->id;
+        $this->save();
+        $this->id=$id;
+        $paginado =new Paginado();
+        $paginado->crear($this);
+        return $this;
     }
 
     public function paginados(){
