@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Tutores;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;

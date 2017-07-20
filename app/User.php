@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Tutores;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,7 +43,7 @@ class User extends Authenticatable
     }
 
     public function paginados(){
-        return $this->hasOne('App\Paginado');
+        return $this->hasOne('Tutores\Paginado');
     }
  
 }

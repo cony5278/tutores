@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Tutores;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -23,13 +23,13 @@ class Tarea extends Model
      */
     public function documentos()
     {
-        return $this->hasMany('App\Documento');
+        return $this->hasMany('Tutores\Documento');
     }
       /**
      * Get the post that owns the comment.
      */
     public function publicaciones()
     {
-        return $this->belongsTo('App\publicaciones');
+        return $this->belongsTo('Tutores\publicaciones');
     }
 }

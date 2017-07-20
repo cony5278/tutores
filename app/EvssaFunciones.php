@@ -6,7 +6,7 @@
  * Time: 10:21 PM
  */
 
-namespace App;
+namespace Tutores;
 
 
 class EvssaFunciones

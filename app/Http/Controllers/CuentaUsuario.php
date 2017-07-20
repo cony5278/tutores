@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Tutores\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Area;
+use Tutores\Area;
 use UsoDeRenderSectionsL5\Http\Requests;
-use App\Publicacion;
+use Tutores\Publicacion;
 class CuentaUsuario extends Controller
 {
     private $area;    

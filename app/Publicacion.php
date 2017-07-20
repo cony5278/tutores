@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace Tutores;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\PublicacionCuenta;
-use App\Archivos;
+use Tutores\Http\Requests\PublicacionCuenta;
+use Tutores\Archivos;
 class Publicacion extends Model
 {
  protected $table='publicaciones';
@@ -130,6 +130,6 @@ class Publicacion extends Model
     */
     public function tareas()
     {
-        return $this->hasMany('App\Tarea');
+        return $this->hasMany('Tutores\Tarea');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Tutores;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,7 +27,7 @@ class Paginado extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('Tutores\User');
     }
 
 }

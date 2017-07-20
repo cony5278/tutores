@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace Tutores;
 
 
-use App\Http\Requests\UsuarioRequest;
+use Tutores\Http\Requests\UsuarioRequest;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User  as Authenticatable;
 class Usuario extends Authenticatable

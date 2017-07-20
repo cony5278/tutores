@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Tutores\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\UsuarioRequest;
-use App\User;
+use Tutores\Http\Requests\UsuarioRequest;
+use Tutores\User;
 
 
 class Usuarios extends Controller

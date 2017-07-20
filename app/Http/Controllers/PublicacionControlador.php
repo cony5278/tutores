@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Tutores\Http\Controllers;
 
-use App\EvssaConstantes;
-use App\EvssaFunciones;
-use App\EvssaTextoMensaje;
+use Tutores\EvssaConstantes;
+use Tutores\EvssaFunciones;
+use Tutores\EvssaTextoMensaje;
 use Illuminate\Http\Request;
-use App\Http\Requests\PublicacionCuenta;
-use App\Area;
-use App\Documento;
-use App\Tarea;
-use App\Publicacion;
+use Tutores\Http\Requests\PublicacionCuenta;
+use Tutores\Area;
+use Tutores\Documento;
+use Tutores\Tarea;
+use Tutores\Publicacion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 class PublicacionControlador extends Controller

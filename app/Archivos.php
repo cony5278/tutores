@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Tutores;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 

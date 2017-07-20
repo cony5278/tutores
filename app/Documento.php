@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace Tutores;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Archivos;
+use Tutores\Archivos;
 class Documento extends Model
 {
     protected $table='documentos';
@@ -36,7 +36,7 @@ class Documento extends Model
      */
     public function tareas()
     {
-        return $this->belongsTo('App\Tarea');
+        return $this->belongsTo('Tutores\Tarea');
     }
 
 }

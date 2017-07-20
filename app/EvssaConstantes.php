@@ -6,7 +6,7 @@
  * Time: 10:30 AM
  */
 
-namespace App;
+namespace Tutores;
 
 
 class EvssaConstantes
