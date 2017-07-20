@@ -3,7 +3,9 @@
 namespace Tutores\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Tutores\Area;
+use Tutores\Paginado;
 use UsoDeRenderSectionsL5\Http\Requests;
 use Tutores\Publicacion;
 class CuentaUsuario extends Controller
@@ -22,9 +24,8 @@ class CuentaUsuario extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {    
-       
-        
+    {
+        Paginado::resetearPaginado();
         return view('usuarios.vistacuenta')->with(['areas'=>$this->area->areaAll(),
                                                        'publicaciones'=>$this->publicacion->publicacionUsuarioAll(),'publicar'=>true]);
          

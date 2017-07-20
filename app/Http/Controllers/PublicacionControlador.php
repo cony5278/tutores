@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Tutores\Http\Requests\PublicacionCuenta;
 use Tutores\Area;
 use Tutores\Documento;
+use Tutores\Paginado;
 use Tutores\Tarea;
 use Tutores\Publicacion;
 use Carbon\Carbon;
@@ -102,6 +103,7 @@ class PublicacionControlador extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->publicacion->actualizar($request,$id);
         return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_EDICION_PUBLICACION_SUCCESS),200);
 
@@ -133,10 +135,12 @@ class PublicacionControlador extends Controller
 
 
     }
-    public function pagePublication($inicial,$final){
+    public function pagePublication(){
 
-        $publicaciones=$this->publicacion->paginar($inicial,$final);
-        $vista=view('usuarios.publicacion.fpublicacion')->with(['publicaciones'=>$publicaciones,'publicar'=>true])->render();
+        $paginado=Paginado::addPaginado();
+        $publicaciones=$this->publicacion->paginar($paginado->inicial,$paginado->final);
+
+        $vista=view('usuarios.publicacion.fpublicacion')->with(['publicaciones'=>$publicaciones,'publicar'=>true,'inicial'=>$paginado->inicial,'final'=>$paginado->final])->render();
         return response()->json(array('success' => true, 'token'=>csrf_token(),'message'=>EvssaTextoMensaje::MENSAJE_ADD_ARCHIVO_PUBLICACION_SUCCESS,'html'=>$vista),200);
     }
 }

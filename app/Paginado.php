@@ -3,6 +3,7 @@
 namespace Tutores;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Paginado extends Model
 {
@@ -31,6 +32,19 @@ class Paginado extends Model
     public function users()
     {
         return $this->belongsTo('Tutores\User');
+    }
+    public static function resetearPaginado(){
+        $paginado=Auth::user()->paginados()->first();
+        $paginado->inicial=0;
+        $paginado->final=9;
+        $paginado->save();
+    }
+    public static function addPaginado(){
+        $paginado=Auth::user()->paginados()->first();
+        $paginado->inicial=$paginado->inicial+9;
+        $paginado->final=$paginado->final+9;
+        $paginado->save();
+        return $paginado;
     }
 
 }

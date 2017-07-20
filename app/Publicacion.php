@@ -11,7 +11,7 @@ use Tutores\Archivos;
 class Publicacion extends Model
 {
  protected $table='publicaciones';
-    protected $fillable=['id','titulo','descripcion','valor','fecha_inicial','fecha_final','estado','id_usuario'];    
+    protected $fillable=['id','titulo','descripcion','valor','fecha_inicial','fecha_final','estado','id_usuario','email','tipo_usuario'];
     
     private function seleccionarEstado(Request $request){
     	switch ($request['estado']) {
@@ -37,7 +37,9 @@ class Publicacion extends Model
 	            'fecha_inicial'=>Carbon::now(),
 	            'fecha_final'=>$request['fecha_final'],
 	            'valor'=>$request['valor'],
-                'id_usuario'=>Auth::user()->id,
+                'id_usuario'=>EvssaFunciones::cerosIzquierda(Auth::user()->id),
+	            'email'=>Auth::user()->email,
+	            'tipo_usuario'=>Auth::user()->tipo_usuario,
 	            'estado'=>$this->seleccionarEstado($request),
             ]);
 
@@ -56,10 +58,10 @@ class Publicacion extends Model
      * @return mixed
      */
      public function publicacionUsuarioUltimo(){
-         return $this->where('id_usuario',Auth::user()->id)->orderBy('id','desc')->take(1)->first();
+         return $this->where('id_usuario',Auth::user()->id)->where('email',Auth::user()->email)->where('tipo_usuario',Auth::user()->tipo_usuario)->orderBy('id','desc')->take(1)->first();
     }
     public function paginar($inicial,$final){
-        return $this->where('id_usuario',Auth::user()->id)->orderBy('id','desc')->offset($inicial)->limit($final)->get();
+        return $this->where('id_usuario',Auth::user()->id)->where('email',Auth::user()->email)->where('tipo_usuario',Auth::user()->tipo_usuario)->orderBy('id','desc')->offset($inicial)->limit($final)->get();
     }
     /**
      * metodo que actualiza la informacion de una publicacion
@@ -70,7 +72,7 @@ class Publicacion extends Model
         $publicacion=$this->find(''.EvssaFunciones::cerosIzquierda($id).'');
         $publicacion->titulo=$request->titulo;
         $publicacion->descripcion=$request->descripcion;
-        $publicacion->tareas->first()->titulo_tarea='mucha cuca'; 
+        $publicacion->tareas->first()->titulo_tarea=$publicacion->tareas->first()->titulo_tarea;
         foreach ($publicacion->tareas->first()->documentos as $documento){
             if($documento->archivo!=$request->input(''.$documento->id.'')){
 

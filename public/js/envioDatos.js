@@ -297,13 +297,10 @@ function AjaxAll() {
  */
 function AjaxPaginado(){
     this.inicial=0;
-    this.final=1;
+    this.final=9;
     this.enviar=function(formulario) {
 
-        console.log(formulario);
         var objeto=this;
-        this.inicial=this.final;
-        this.final=this.final+9;
         publicacion.cambiarFormularioPaginado(formulario,'pagePublication',this.inicial,this.final,'GET');
         var json= {"inicial":this.inicial, "final":this.final};
             $.ajax({
@@ -317,7 +314,11 @@ function AjaxPaginado(){
                 notificacion.crearContenedor();
                 notificacion.crearNotificacion(data.message, "SUCCESS");
                 objeto.renewToken(data.token);
-                console.log(data.html);
+                objeto.inicial=data.inicial;
+                objeto.final=data.final;
+                if(data.html!=null  || data.html!="") {
+                    $('.contenedor-cuerpo').prepend(data.html);
+                }
             },
             error: function (data) {
                 console.log("error");

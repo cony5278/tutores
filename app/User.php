@@ -50,7 +50,7 @@ class User extends Authenticatable
 
 
     public function paginados(){
-        return $this->hasOne('Tutores\Paginado');
+        return $this->hasOne('Tutores\Paginado','id_usuario');
     }
  
 }
