@@ -19,11 +19,12 @@ class CreateUsuariosTable extends Migration
             $table->enum('tipo_usuario',['T','A','S'])->default('A');
             $table->unique(array('id','email','tipo_usuario'));
             //$table->primary(['id','email','tipo_usuario']);
-            $table->string('name',30);          
+            $table->string('alias',30);
             $table->string('nombre1',30)->nullable();
             $table->string('nombre2',30)->nullable();
             $table->string('apellido1',30)->nullable();
             $table->string('apellido02',30)->nullable();
+            $table->boolean('activo')->default(0);
             $table->string('password',150);
             $table->string('telefono',50)->nullable();
             $table->enum('tipo_telefono',['C','F'])->nullable();

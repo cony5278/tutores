@@ -2,6 +2,8 @@
 
 namespace Tutores\Http\Controllers\Auth;
 
+use Tutores\EvssaFunciones;
+use Illuminate\Support\Facades\DB;
 use Tutores\User;
 use Tutores\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -47,13 +49,24 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
+        $validator= Validator::make($data, [
+            'alias' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
             'tipo_usuario'=>'required',
         ]);
+        $usuario=DB::table('users')->where('email', $data['email'])->where('tipo_usuario',$data['tipo_usuario']=='1'?'A':'T')->first();
+
+        if(!EvssaFunciones::objetoVacio($usuario)){
+            $validator= Validator::make($data, [
+                'email' => 'unique:users',
+                'tipo_usuario'=>'unique:users',
+            ]);
+        }
+
+        return $validator;
     }
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -63,6 +76,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
        $user=new User();
        return $user->crear($data);
     }
