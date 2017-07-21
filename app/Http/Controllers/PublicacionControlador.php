@@ -2,18 +2,15 @@
 
 namespace Tutores\Http\Controllers;
 
-use Tutores\EvssaConstantes;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Tutores\Documento;
 use Tutores\EvssaFunciones;
 use Tutores\EvssaTextoMensaje;
-use Illuminate\Http\Request;
-use Tutores\Http\Requests\PublicacionCuenta;
-use Tutores\Area;
-use Tutores\Documento;
 use Tutores\Paginado;
-use Tutores\Tarea;
 use Tutores\Publicacion;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use Tutores\Tarea;
+use Tutores\Http\Requests\PublicacionCuenta;
 class PublicacionControlador extends Controller
 {
     private $publicacion;

@@ -3,6 +3,8 @@
 namespace Tutores;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use CURLFile;
+use Illuminate\Support\Facades\Storage;
 
 class Archivos 
 {
@@ -81,7 +83,7 @@ class Archivos
       */
       public function guardarArchivo($dateServidor){
        
-        \Storage::disk(EvssaConstantes::LOCAL)->put($this->nombreRutaArchivo($dateServidor),\File::get($this->file));
+        Storage::disk(EvssaConstantes::LOCAL)->put($this->nombreRutaArchivo($dateServidor),CURLFile::get($this->file));
       }
 
     /**metodo que quita la extension del nombre del archivo en la base de datos
@@ -98,7 +100,7 @@ class Archivos
           $rutaCompletaNueva=$this->nombreRutaArchivos($newDate,$extension,$cambioNombre).".".$extension;
 
 
-          \Storage::copy($rutaCompleta,$rutaCompletaNueva);
+          Storage::copy($rutaCompleta,$rutaCompletaNueva);
 
           $this->eliminarArchivoLocal($rutaCompleta);
 
@@ -118,7 +120,7 @@ class Archivos
      * @param $ruta
      */
       private function eliminarArchivoLocal($ruta){
-          \Storage::delete($ruta);
+          Storage::delete($ruta);
       }
       public function getExtension(){
           return $this->file->getClientOriginalExtension();

@@ -3,10 +3,8 @@
 namespace Tutores\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Tutores\Area;
 use Tutores\Paginado;
-use UsoDeRenderSectionsL5\Http\Requests;
 use Tutores\Publicacion;
 class CuentaUsuario extends Controller
 {
