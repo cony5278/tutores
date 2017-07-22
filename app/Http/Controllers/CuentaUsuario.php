@@ -6,92 +6,129 @@ use Illuminate\Http\Request;
 use Tutores\Area;
 use Tutores\Paginado;
 use Tutores\Publicacion;
-class CuentaUsuario extends Controller
-{
-    private $area;    
-    private $publicacion;
-    public function __construct()
-    {          
-         $this->area=new Area();  
-         $this->publicacion=new Publicacion();          
-         $this->middleware('auth');
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        Paginado::resetearPaginado();
-        return view('usuarios.vistacuenta')->with(['areas'=>$this->area->areaAll(),
-                                                       'publicaciones'=>$this->publicacion->publicacionUsuarioAll(),'publicar'=>true]);
-         
-    }
+use Tutores\Evssa\EvssaGeneral;
+use Tutores\Evssa\EvssaPropertie;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+class CuentaUsuario extends Controller implements EvssaGeneral {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	private $area;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+	private $publicacion;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+	private $idioma;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+	public function __construct ( )
+	{
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+		$this -> area = new Area ( );
+		$this -> publicacion = new Publicacion ( );
+		$this -> middleware ( 'auth' );
+		$this -> init ( );
+	
+	}
+
+	public function init ( )
+	{
+
+		$this -> idioma = new EvssaPropertie ( );
+	
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 * 
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index (Request $request)
+	{
+
+		Paginado :: resetearPaginado ( );
+		return view ( 'usuarios.vistacuenta' ) -> with ( 
+		[ 
+			
+				$this -> idioma -> get ( 'TB_15' ) => $this -> area -> areaAll ( ) ,
+				$this -> idioma -> get ( 'TB_6' ) => $this -> publicacion -> publicacionUsuarioAll ( ) ,
+				$this -> idioma -> get ( 'TB_7' ) => true 
+		] );
+	
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 * 
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create ( )
+	{
+
+	
+		//
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 * 
+	 * @param \Illuminate\Http\Request $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store (Request $request)
+	{
+
+	
+		//
+	}
+
+	/**
+	 * Display the specified resource.
+	 * 
+	 * @param int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show ($id)
+	{
+
+	
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 * 
+	 * @param int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit ($id)
+	{
+
+	
+		//
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 * 
+	 * @param \Illuminate\Http\Request $request
+	 * @param int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update (Request $request , $id)
+	{
+
+	
+		//
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 * 
+	 * @param int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy ($id)
+	{
+
+	
+		//
+	}
+
 }

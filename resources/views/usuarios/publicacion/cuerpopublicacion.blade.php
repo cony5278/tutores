@@ -4,18 +4,18 @@
 	  <a onclick="publicacion.desplegarItem(this);"><span class="glyphicon glyphicon-menu-down"></span></a>
 	  <div class="menu-publicado-item ">  	
 
-	 	<div class="editar-archivo-menu-publicado" href="#">
+	 	<div class="editar-archivo-menu-publicado" >
 	 		<span class="glyphicon glyphicon-edit" onclick="publicacion.cambiarFormulario(this,'PUT',{{$publicacion->id}},'',1)" > Editar</span>
 	 	</div>
-	 	<div class="eliminar-archivo-menu-publicado" href="#">
+	 	<div class="eliminar-archivo-menu-publicado" >
 	 		<span class="glyphicon glyphicon-trash" onclick="publicacion.cambiarFormulario(this,'DELETE',{{$publicacion->id}},'',3);ajaxAll.envioAjax(this);">Eliminar Publicacion</span>
 	 	</div>
-	 	<div class="adicionar-archivo-menu-publicado" href="#">
+	 	<div class="adicionar-archivo-menu-publicado">
 	 		<span class="glyphicon glyphicon-file" > Añadir archivos</span>
             <input type="file" class="archivos-editar" width="100"  height="100" onchange="archivo.cargarMForm(this,'edicion-eliminacion-publicacion-{{$publicacion->id}}');publicacion.cambiarFormulario(this,'GET',{{$publicacion->id}},'addFilePulication',2)" name="archivos[]" multiple />
 
         </div>
-	 	<div class="eliminar-archivo-menu-publicado" href="#">
+	 	<div class="eliminar-archivo-menu-publicado" >
 	 		<span class="glyphicon glyphicon-trash" onclick="publicacion.cambiarFormulario(this,'GET',{{$publicacion->id}},'destroyFile',0)">Eliminar archivos</span>
 
         </div>
